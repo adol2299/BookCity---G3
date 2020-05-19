@@ -127,7 +127,7 @@ public class MainMenuController implements Initializable {
          }
     
         
-       public void inicioSesionButtonPushed(ActionEvent inicio) throws IOException{      
+       /*public void inicioSesionButtonPushed(ActionEvent inicio) throws IOException{      
         InicioSesion.setOnAction(e ->{
             try {
                 System.out.println(TextUsuario.getText());
@@ -143,7 +143,7 @@ public class MainMenuController implements Initializable {
                 Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
             }        
         });   
-    } 
+    } */
     
     
     @Override

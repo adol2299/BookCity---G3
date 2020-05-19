@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="airbook.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AirBook.gui.MainMenuController">
    <children>
       <AnchorPane prefHeight="108.0" prefWidth="850.0" style="-fx-background-color: #F2F2F2;">
          <children>
@@ -35,12 +35,12 @@
             </Button>
             <ImageView fitHeight="99.0" fitWidth="102.0" layoutX="13.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/LogosLogo-100.jpg" />
+                  <Image url="@../airbook/images/LogosLogo-100.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="264.0" fitWidth="853.0" layoutX="-2.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/BannerArtboard%201-100.jpg" />
+                  <Image url="@../airbook/images/BannerArtboard%201-100.jpg" />
                </image>
             </ImageView>
          </children>
@@ -71,22 +71,22 @@
       </AnchorPane>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/booksArtboard%201-100.jpg" />
+            <Image url="@../airbook/images/booksArtboard%201-100.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="665.0" layoutY="546.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/booksArtboard%204-100.jpg" />
+            <Image url="@../airbook/images/booksArtboard%204-100.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="465.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/booksArtboard%203-100.jpg" />
+            <Image url="@../airbook/images/booksArtboard%203-100.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="262.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/booksArtboard%202-100.jpg" />
+            <Image url="@../airbook/images/booksArtboard%202-100.jpg" />
          </image>
       </ImageView>
       <Button layoutX="27.0" layoutY="706.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #F2F2F2;" text="1984">
