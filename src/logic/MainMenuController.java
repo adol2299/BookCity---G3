@@ -64,7 +64,7 @@ public class MainMenuController implements Initializable {
       }
     });
 
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));         
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Login.fxml"));         
             
         Scene scene = new Scene (root);      
         
@@ -91,7 +91,7 @@ public class MainMenuController implements Initializable {
       }
     });
 
-        Parent root = FXMLLoader.load(getClass().getResource("Registro.fxml"));         
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Registro.fxml"));         
             
         Scene scene = new Scene (root);      
         
@@ -103,7 +103,7 @@ public class MainMenuController implements Initializable {
     //Método  para llamar a popup Login//
     
         public void loginButtonPushed(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));         
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
             
         Scene scene = new Scene (root);      
         
@@ -116,7 +116,7 @@ public class MainMenuController implements Initializable {
     //Método  para llamar a popup Registro//   
         
         public void registroButtonPushed(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));         
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
             
         Scene scene = new Scene (root);      
         
