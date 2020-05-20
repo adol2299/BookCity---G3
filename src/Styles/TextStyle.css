@@ -8,3 +8,54 @@ and open the template in the editor.
     Author     : Familia Ortega
 */
 
+
+*{
+    -fx-primary: #F1DE9C ;
+    -fx-focus-color:#D8754E ;
+    -fx-background:  #F2F2F2 ;
+}
+
+.text-field{
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    
+}
+
+.text-field:hover
+{
+    -fx-background-color: -fx-focus-color, -fx-primary, -fx-primary, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
+
+    -fx-prompt-text-fill:#D8754E;
+}
+
+.text-field:focused {
+    -fx-transition: 0.2s;
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}
+
+.combo-box{
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+
+.combo-box:hover
+{
+    -fx-background-color: -fx-focus-color, -fx-primary, -fx-primary, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-text-fill:#D8754E;
+}
+
+.combo-box:focused {
+    -fx-transition: 0.2s;
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}
+
+.button:hover{
+    -fx-background-color: -fx-focus-color, -fx-primary, -fx-primary, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-text-fill:#D8754E;
+    
+}

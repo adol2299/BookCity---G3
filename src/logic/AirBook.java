@@ -28,6 +28,7 @@ public class AirBook extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
         Scene scene = new Scene (root);   
+        scene.getStylesheets().add("/Styles/TextStyle.css");
         stage.setScene(scene);
         stage.show();
     }
