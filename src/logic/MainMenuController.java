@@ -5,6 +5,7 @@
  */
 package logic;
 
+import dao.ControlBd;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,6 +45,8 @@ public class MainMenuController implements Initializable {
     private TextField TextPassw;
     @FXML
     private Button InicioSesion;
+    
+    private ControlBd control= new  ControlBd("root", "");
 
     //Creación popup Login//
     
@@ -144,7 +147,11 @@ public class MainMenuController implements Initializable {
             }        
         });   
     } */
-    
+    @FXML
+    public Object[][] searchByIsbn(){
+        Object[][] tabla=control.getLibrosByIsbn(text_search.getText());
+        return tabla;
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -19,7 +19,6 @@ public class ControlBd {
     private String pass = "";
     private SQL_Conexion con;
 
-    //Encapsulando User y Pass, de esta forma siempre estarÃ¡ en RAM.
     public static void main(String[] args) {
         ControlBd control = new ControlBd("root", "");
         Usuario usuario = new Usuario("11122213","delverde");
@@ -39,6 +38,64 @@ public class ControlBd {
     }
 
     //Consultas
+    
+    public Object[][] getLibrosByIsbn(String isbn){
+        String[] columnas={"isbn","nombre","editorial","autor","precio",
+        "ano_publicacion","estado","existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where isbn like '%"+isbn+"%';");
+        return resultado;
+    }
+    public Object[][] getLibrosByNombre(String nombre){
+        String[] columnas={"nombre","nombre","editorial","autor","precio",
+        "ano_publicacion","estado","existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where nombre like '%"+nombre+"%';");
+        return resultado;
+    }
+    public Object[][] getLibrosByEditorial(String editorial){
+        String[] columnas={"editorial","nombre","editorial","autor","precio",
+        "ano_publicacion","estado","existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where editorial like '%"+editorial+"%';");
+        return resultado;
+    }
+    public Object[][] getLibrosByAutor(String autor){
+        String[] columnas={"autor","nombre","editorial","autor","precio",
+        "ano_publicacion","estado","existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where autor like '%"+autor+"%';");
+        return resultado;
+    }
+    public Object[][] getLibrosByPrecio(String precio){
+        String[] columnas={"precio","nombre","editorial","autor","precio",
+        "ano_publicacion","estado","existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where precio like '%"+precio+"%';");
+        return resultado;
+    }
+    public Object[][] getLibrosByAno(String ano_publicacion){
+        String[] columnas={"ano_publicacion","nombre","editorial","autor","precio",
+        "ano_publicacion","estado","existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where ano_publicacion like '%"+ano_publicacion+"%';");
+        return resultado;
+    }
+    public Object[][] getLibrosByEstado(String estado){
+        String[] columnas={"estado","nombre","editorial","autor","precio",
+        "ano_publicacion","estado","existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where estado like '%"+estado+"%';");
+        return resultado;
+    }
+    public Object[][] getLibrosByExistencia(String existencia){
+        String[] columnas={"existencia","nombre","editorial","autor","precio",
+        "ano_publicacion","estado","existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where existencia like '%"+existencia+"%';");
+        return resultado;
+    }
+    
     public boolean isContrasena(Usuario usuario) {
         String[] columnas = {"contrasena"};
         Object[][] contrasena = sen.GetTabla(columnas, "Usuario", "select contrasena FROM usuario Where cedula='" + usuario.getCedula() + "';");
