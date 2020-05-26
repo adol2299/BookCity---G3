@@ -27,8 +27,6 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    
-    
     public String getCedula() {
         return cedula;
     }

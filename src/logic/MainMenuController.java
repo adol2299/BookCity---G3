@@ -25,6 +25,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Window;
 
 public class MainMenuController implements Initializable {
     
@@ -38,13 +40,6 @@ public class MainMenuController implements Initializable {
     private TextField text_lleg;
     @FXML
     private Button button_search;
-    //login
-    @FXML
-    private TextField TextUsuario;
-    @FXML
-    private TextField TextPassw;
-    @FXML
-    private Button InicioSesion;
     
     private ControlBd control= new  ControlBd("root", "");
 
@@ -130,23 +125,10 @@ public class MainMenuController implements Initializable {
          }
     
         
-       /*public void inicioSesionButtonPushed(ActionEvent inicio) throws IOException{      
-        InicioSesion.setOnAction(e ->{
-            try {
-                System.out.println(TextUsuario.getText());
-                System.out.println(TextPassw.getText());
-                Parent inicioSesionParent = FXMLLoader.load(getClass().getResource("User_Menu.fxml"));
-                Scene inicioSesionScene = new Scene (inicioSesionParent);
-                
-                
-                Stage window = new Stage();
-                window .setScene(inicioSesionScene);
-                window.show();
-            } catch (IOException ex) {
-                Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
-            }        
-        });   
-    } */
+        
+        
+     
+       
     @FXML
     public Object[][] searchByIsbn(){
         Object[][] tabla=control.getLibrosByIsbn(text_search.getText());
