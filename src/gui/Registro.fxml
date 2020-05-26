@@ -14,7 +14,7 @@
       <AnchorPane layoutY="96.0" prefHeight="379.0" prefWidth="500.0" style="-fx-background-color: #F2F2F2;">
          <children>
             <TextField fx:id="TextCedula" layoutX="95.0" layoutY="186.0" prefHeight="34.0" prefWidth="309.0" promptText="Cédula" stylesheets="@../Styles/TextStyle.css" />
-            <Button layoutX="95.0" layoutY="329.0" mnemonicParsing="false" onAction="#RegistrarButtonPushed"  prefHeight="31.0" prefWidth="309.0" style="-fx-background-color: #F1DE9C;" text="Registrar">
+            <Button fx:id="register" layoutX="95.0" layoutY="329.0" mnemonicParsing="false" onAction="#RegistrarButtonPushed" prefHeight="31.0" prefWidth="309.0" style="-fx-background-color: #F1DE9C;" text="Registrar">
                <font>
                   <Font name="Tw Cen MT Condensed Bold" size="17.0" />
                </font>
