@@ -150,6 +150,14 @@ public class MainMenuController implements Initializable {
     @FXML
     public Object[][] searchByIsbn(){
         Object[][] tabla=control.getLibrosByIsbn(text_search.getText());
+        int cont=1;
+        for(Object[] fila:tabla){
+            System.out.print("Libro #"+(cont++)+"//   ");
+            for(Object dato: fila){
+                if(dato!=null) System.out.print("//  "+dato+"// ");
+            }
+            System.out.println("");
+        }
         return tabla;
     }
     
