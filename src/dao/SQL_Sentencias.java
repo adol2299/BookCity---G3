@@ -22,6 +22,9 @@ public class SQL_Sentencias {
         this.pass = pass;
     }
 
+    public SQL_Sentencias() {
+    }
+
     public boolean insertar(String datos[], String insert) {
         boolean estado = false;
         try {
@@ -38,7 +41,37 @@ public class SQL_Sentencias {
         return estado;
     }
 
+    //Método para registrar un nuevo usuario en la BD a partir de un objeto de la clase Usuario
+    public boolean insertarUsuario(Usuario usu) {
+        boolean estado = false;
+        try {
+            ps = con.conectado().prepareStatement("insert into Usuario values("+usu.getCedula()+",'"
+            +usu.getNombre()+"','"+usu.getContrasena()+"',"+usu.isAdministrador()+")");
+            ps.execute();
+            ps.close();
+            estado = true;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return estado;
+    }
+    
+    //Método para Login a partir de un objeto de la clase Usuario
+    public int Login(Usuario usu) {
+        int registros = 0;
+        try {
+            ps = con.conectado().prepareStatement("select count(cedula) as conteo from Usuario "
+                    + "where cedula = "+usu.getCedula()+" and contrasena = '"+usu.getContrasena()+"'");
+            res = ps.executeQuery();
+            res.next();
+            registros = res.getInt("conteo");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return registros;
+    }
 
+    
     public boolean update(String sql) {
         boolean estado = false;
         try {

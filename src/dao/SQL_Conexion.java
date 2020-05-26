@@ -20,6 +20,7 @@ public class SQL_Conexion {
     public SQL_Conexion(String user, String pass) {
      try{
          Class.forName("com.mysql.jdbc.Driver");
+         //junto a "root" poner la contraseña de su servidor de MySQL
          con = DriverManager.getConnection(url,"root","");
          //con = DriverManager.getConnection(url,user,pass);
          if (con!=null){
