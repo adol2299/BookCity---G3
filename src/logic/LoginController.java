@@ -6,10 +6,12 @@
 package logic;
 
 import dao.SQL_Sentencias;
-import dao.Usuario;
+import Entidad.Usuario;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
 /**
@@ -23,11 +25,23 @@ public class LoginController {
     private TextField TextCedula;  
     
     public void LoginButtonPushed(ActionEvent event) throws IOException{
-        Usuario usu = new Usuario(TextCedula.getText(),TextPassw.getText());
+        login();
+    }
+    
+    public void login()
+    {   Usuario usu = new Usuario(TextCedula.getText(),TextPassw.getText());
         SQL_Sentencias sql = new SQL_Sentencias();
         if(sql.Login(usu)>0)
-            System.out.println("Bienvenido");
+        {   Alert alert = new Alert(Alert.AlertType.INFORMATION, "Bienvenido", ButtonType.OK);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) 
+               alert.close(); 
+        }
         else
-            System.out.println("Datos incorrectos");
+        {   Alert alert = new Alert(Alert.AlertType.ERROR, "Datos incorrectos", ButtonType.OK);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) 
+               alert.close();
+        }
     }
 }

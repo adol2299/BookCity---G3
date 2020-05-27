@@ -5,6 +5,7 @@
  */
 package dao;
 
+import Entidad.Usuario;
 import static javafx.application.Application.launch;
 
 
