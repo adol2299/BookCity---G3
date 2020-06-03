@@ -30,6 +30,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -44,7 +45,7 @@ public class MainMenuController implements Initializable {
     @FXML
     private Button registro;
     @FXML
-    private TextField text_search;
+    private TextField textSearchHome;
     @FXML
     private Button button_search;
     
@@ -54,13 +55,7 @@ public class MainMenuController implements Initializable {
 
     private ObservableList<String> filtrosLibros=FXCollections.observableArrayList(
     "Nombre","Editorial","Autor","ISBN");
-    //Creación popup Login//
-    @FXML
-    private TextField text_search1;
-    @FXML
-    private Button button_search1;
-    @FXML
-    private ComboBox<?> menu_filter1;
+
     @FXML
     private AnchorPane anchorBusquedaLibros;
     private ArrayList<Libro> arrayLibros = new ArrayList<>();
@@ -77,6 +72,11 @@ public class MainMenuController implements Initializable {
     private TableView<Libro> tableBusquedaLibros;
     @FXML
     private AnchorPane anchorHome;
+    @FXML
+    private TextField textSearchBusquedaLibros;
+    @FXML
+    private ComboBox<String> menuFilterBusquedaLibros;
+  
 
     public void popupLogin(final Stage stage) throws IOException {         
     final Popup popup = new Popup(); 
@@ -164,9 +164,8 @@ public class MainMenuController implements Initializable {
         
      
        
-    @FXML
     public Object[][] searchByIsbn(){
-        Object[][] tabla=control.getLibrosByIsbn(text_search.getText());
+        Object[][] tabla=control.getLibrosByIsbn(textSearchHome.getText());
         int cont=1;
         for(Object[] fila:tabla){
             System.out.print("Libro #"+(cont++)+"//   ");
@@ -183,19 +182,29 @@ public class MainMenuController implements Initializable {
     }
 
    
-   
-    
-     @Override
+      @Override
     public void initialize(URL url, ResourceBundle rb) {
         anchorHome.toFront();
         menu_filter.setItems(filtrosLibros);
         menu_filter.setValue("Nombre");
-    }    
+        menuFilterBusquedaLibros.setItems(filtrosLibros);
+        menuFilterBusquedaLibros.setValue("Nombre");
+    }
 
     @FXML
-    public void onClicBuscarLibro(ActionEvent event) {
+    public void onClicSearchLibroHome(ActionEvent event) {
         anchorBusquedaLibros.toFront();
-        Object[][] libros=control.getLibrosBy(menu_filter.getValue(),text_search.getText());
+        llenarTablaBusquedaLibros(menu_filter.getValue(),textSearchHome.getText());
+        
+    }
+
+    @FXML
+    public void onClicTxtBusquedaLibro(KeyEvent event) {
+        llenarTablaBusquedaLibros(menuFilterBusquedaLibros.getValue(),textSearchBusquedaLibros.getText());
+    }
+
+    public void llenarTablaBusquedaLibros(String filtro,String busqueda) {
+        Object[][] libros=control.getLibrosBy(filtro,busqueda);
         for (Object[] currentLibro : libros) {
             boolean flag=false;
             for (Object object : currentLibro) {
