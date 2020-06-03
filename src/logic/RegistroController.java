@@ -39,111 +39,54 @@ public class RegistroController {
              alert.show();
                 }
     
-    public boolean RegisterRestrictions() {
+    public String RegisterRestrictions(Usuario usu) {
+        String usuario = usu.getNombre();
+        String cedula = usu.getCedula();
+        String password = usu.getContrasena();
         
-        String usuario = TextUsuario.getText();
-        String cedula = TextCedula.getText();
-        String password = TextPassw.getText();
-        
-        if(usuario.isEmpty()) {                 
-            Alert alert = new Alert(AlertType.ERROR, "Debe llenar el campo de Nombre", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                alert.close();
-            }
-            return false;
-        }
-        if(cedula.isEmpty()) {
-            Alert alert = new Alert(AlertType.ERROR, "Debe llenar el campo de Cédula", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                alert.close();
-            }
-            return false;
-        }
-        if(password.isEmpty()) {
-            Alert alert = new Alert(AlertType.ERROR, "Debe llenar el campo de Contraseña", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                alert.close();
-            }   
-            return false;
-        }    
-
-        if(!longNombre(usuario)) {
-            Alert alert = new Alert(AlertType.ERROR, "Longitud de nombre incorrecta", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                alert.close();
-            } 
-            return false;
-        }
-        if(!longCedula(cedula)) {
-            Alert alert = new Alert(AlertType.ERROR, "Longitud de cédula incorrecta", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                alert.close();
-            }
-            return false;
-        }
-        if(!longPassw(password)) {
-            Alert alert = new Alert(AlertType.ERROR, "Longitud de contraseña incorrecta", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                alert.close();
-            }
-            return false;
-        }
-        
+        if(usuario.isEmpty())            
+            return "Debe llenar el campo de Nombre";
+        if(cedula.isEmpty())
+            return "Debe llenar el campo de Cédula";
+        if(password.isEmpty())  
+            return "Debe llenar el campo de Contraseña";
+        if(!longNombre(usuario))
+            return "Longitud de nombre incorrecta";
+        if(!longCedula(cedula))
+            return "Longitud de cédula incorrecta";
+        if(!longPassw(password))
+            return "Longitud de contraseña incorrecta";       
         if(numCedula(cedula))
-        {   Alert alert = new Alert(AlertType.ERROR, "Solo se admiten números en la cédula", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK)
-                alert.close();
-            return false;
-        }
-        
+            return "Solo se admiten números en la cédula";       
         if(txtNombre(usuario))
-        {   Alert alert = new Alert(AlertType.ERROR, "No se admiten números en el Nombre", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK)
-                alert.close();
-            return false;
-        }
+            return "No se admiten números en el Nombre";
+        if(testRegEx(password))
+            return "No se aceptan caracteres especiales en la contraseña";
         
-        if(testRegEx(password)) {
-            Alert alert = new Alert(AlertType.ERROR, "No se aceptan caracteres especiales en la contraseña", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                alert.close();
-            }
-            return false;
-        }
-        return true;
+        return "Correcto";
     }
     
-    public void RegistrarButtonPushed(ActionEvent event) throws IOException{
-        Registrar();
-    }
-    
-    public void Registrar()
-    {
+    public void RegistrarButtonPushed(ActionEvent event) throws IOException{   
         Usuario usu = new Usuario(TextCedula.getText(),TextUsuario.getText(),TextPassw.getText());
-        SQL_Sentencias sql = new SQL_Sentencias();
-        if(RegisterRestrictions())
-        {   if(sql.insertarUsuario(usu))
-            {   Alert alert = new Alert(AlertType.INFORMATION, "Usuario registrado exitosamente", ButtonType.OK);
+        Alert alert = new Alert(AlertType.INFORMATION, Registrar(usu), ButtonType.OK);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.OK) 
-                   alert.close(); 
-            }
+                   alert.close();
+    }
+    
+    public String Registrar(Usuario usu)
+    {   SQL_Sentencias sql = new SQL_Sentencias();
+        String test = RegisterRestrictions(usu);
+        //se hace la validación de formatos de texto
+        if(test.equals("Correcto"))
+        {   //se intenta registrar usuario en db después de pasar por las validaciones de formato
+            if(sql.insertarUsuario(usu))
+                return "Usuario registrado exitosamente";
             else
-            {   Alert alert = new Alert(AlertType.ERROR, "Error al registrar usuario, por favor revise sus datos", ButtonType.OK);
-                alert.showAndWait();
-                if (alert.getResult() == ButtonType.OK) 
-                   alert.close(); 
-            }
+                return "Error al registrar usuario, por favor revise sus datos";
         }
+        else
+            return test;
     }
     
     public boolean txtNombre(String nombre)

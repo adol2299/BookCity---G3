@@ -25,23 +25,18 @@ public class LoginController {
     private TextField TextCedula;  
     
     public void LoginButtonPushed(ActionEvent event) throws IOException{
-        login();
-    }
-    
-    public void login()
-    {   Usuario usu = new Usuario(TextCedula.getText(),TextPassw.getText());
-        SQL_Sentencias sql = new SQL_Sentencias();
-        if(sql.Login(usu)>0)
-        {   Alert alert = new Alert(Alert.AlertType.INFORMATION, "Bienvenido", ButtonType.OK);
+        Usuario usu = new Usuario(TextCedula.getText(),TextPassw.getText());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, login(usu), ButtonType.OK);
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) 
                alert.close(); 
-        }
+    }
+    
+    public String login(Usuario usu)
+    {   SQL_Sentencias sql = new SQL_Sentencias();
+        if(sql.Login(usu)>0)
+            return "Bienvenido";
         else
-        {   Alert alert = new Alert(Alert.AlertType.ERROR, "Datos incorrectos", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) 
-               alert.close();
-        }
+            return "Datos incorrectos";
     }
 }

@@ -6,7 +6,7 @@
 package logic;
 
 import dao.ControlBd;
-import data.Libro;
+import Entidad.Libro;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

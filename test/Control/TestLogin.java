@@ -50,22 +50,13 @@ public class TestLogin {
     @Test
     public void testDatos() {
         Usuario u = new Usuario("1234567852","AndresOrtega","12345asm");
-        TextField contrasena = new TextField(u.getContrasena());
-        TextField cedula = new TextField(u.getCedula());
-        ValidarLogin.TextCedula = cedula;
-        ValidarLogin.TextPassw = contrasena;
-        assertEquals(ValidarLogin.login(), DATOS_INCORRECTOS);
+        assertEquals(ValidarLogin.login(u), DATOS_INCORRECTOS);
     }
     
     @Test
     public void testTodoCorrecto() {
         Usuario u = new Usuario("1234567852","AndresOrtega","12345as");
-        TextField contrasena = new TextField(u.getContrasena());
-        TextField cedula = new TextField(u.getCedula());
-        ValidarLogin.TextCedula = cedula;
-        ValidarLogin.TextPassw = contrasena;
-        ValidarLogin.login();
-        assertEquals(ValidarLogin.login(), USUARIO_AUTORIZADO);
+        assertEquals(ValidarLogin.login(u), USUARIO_AUTORIZADO);
     }
     
 }

@@ -14,7 +14,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import Entidad.Usuario;
 import logic.RegistroController;
-import javafx.scene.control.TextField;
+
 
 
 
@@ -63,145 +63,79 @@ public class TestRegistro {
     @Test
     public void faltaCampoNombre() {
         Usuario u = new Usuario("1234567852","","12345as");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), FALTA_NOMBRE);
+        assertEquals(RegistroController.Registrar(u), FALTA_NOMBRE);
     }
     
     @Test
     public void faltaCampoCedula() {
         Usuario u = new Usuario("","AndresOrtega","12345as");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), FALTA_CEDULA);
+        assertEquals(RegistroController.Registrar(u), FALTA_CEDULA);
     }
     
     @Test
     public void faltaCampoContrasenia() {
         Usuario u = new Usuario("1234567852","AndresOrtega","");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), FALTA_CONTRASENIA);
+        assertEquals(RegistroController.Registrar(u), FALTA_CONTRASENIA);
     }
     
     @Test
     public void testLongitudNombre() {
         Usuario u = new Usuario("1234567852","A","12345as");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), LONG_NOMBRE_INCORRECTA);
+        assertEquals(RegistroController.Registrar(u), LONG_NOMBRE_INCORRECTA);
         
         u.setNombre("AndresOrtegaLobos");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        assertEquals(RegistroController.Registrar(), LONG_NOMBRE_INCORRECTA);
+        assertEquals(RegistroController.Registrar(u), LONG_NOMBRE_INCORRECTA);
                 }
     
     @Test
     public void testLongitudCedula() {
         Usuario u = new Usuario("1234","AndresOrtega","12345as");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), LONG_CEDULA_INCORRECTA);
+        assertEquals(RegistroController.Registrar(u), LONG_CEDULA_INCORRECTA);
         
         u.setCedula("12345678912345");
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), LONG_CEDULA_INCORRECTA);
+        assertEquals(RegistroController.Registrar(u), LONG_CEDULA_INCORRECTA);
 
     }
     
-    /*@Test
+   /* @Test
     public void testUsuarioUnico() {
         Usuario u = new Usuario("111111","maria","#Contrasenia4");
         //u.setNombre("maria");
         //u.setContrasena("#Contrasenia4");
-        assertEquals(RegistroController.Registrar(), NOMBRE_USUARIO_INDISPO);
+        assertEquals(RegistroController.Registrar(u), NOMBRE_USUARIO_INDISPO);
         
     }*/
     
     @Test
     public void testLongitudContrasenia() {
         Usuario u = new Usuario("1234567852","AndresOrtega","contra");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), LONG_PASSWORD_INCORRECTA);
+        assertEquals(RegistroController.Registrar(u), LONG_PASSWORD_INCORRECTA);
         
         u.setContrasena("contrasenia123");
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        assertEquals(RegistroController.Registrar(), LONG_PASSWORD_INCORRECTA);
+        assertEquals(RegistroController.Registrar(u), LONG_PASSWORD_INCORRECTA);
     }
     
     @Test
     public void testFormatoCedula() {
         Usuario u = new Usuario("12345678m52","AndresOrtega","12345as");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), FORM_ID_INCORRECTA);
+        assertEquals(RegistroController.Registrar(u), FORM_ID_INCORRECTA);
     }
     
     @Test
     public void testFormatoNombre() {
         Usuario u = new Usuario("1234567852","AndresOrtega4","12345as");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), FORM_NOMBRE_INCORRECTA);
+        assertEquals(RegistroController.Registrar(u), FORM_NOMBRE_INCORRECTA);
     }
     
     @Test
     public void testFormatoContrasenia() {
         Usuario u = new Usuario("1234567852","AndresOrtega","12345as%");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), FORM_PASSWORD_INCORRECTA);
+        assertEquals(RegistroController.Registrar(u), FORM_PASSWORD_INCORRECTA);
     }
     
     @Test
     public void testTodoCorrecto() {
         Usuario u = new Usuario("1234567852","AndresOrtega","12345as");
-        TextField usuario = new TextField(u.getNombre()); 
-        RegistroController.TextUsuario = usuario;
-        TextField contrasena = new TextField(u.getContrasena());
-        RegistroController.TextPassw = contrasena;
-        TextField cedula = new TextField(u.getCedula());
-        RegistroController.TextCedula = cedula;
-        assertEquals(RegistroController.Registrar(), USUARIO_AUTORIZADO);
+        assertEquals(RegistroController.Registrar(u), USUARIO_AUTORIZADO);
     }
 }
