@@ -21,9 +21,9 @@ public class ControlBd {
     private SQL_Conexion con;
 
     public static void main(String[] args) {
-        ControlBd control = new ControlBd("root", "");
-        Usuario usuario = new Usuario("11122213","delverde");
-        control.isContrasena(usuario);
+//        ControlBd control = new ControlBd("root", "");
+//        Usuario usuario = new Usuario("11122213","delverde");
+//        control.isContrasena(usuario);
     }   
     public ControlBd(String user, String pass) {
         this.user = user;
@@ -39,6 +39,15 @@ public class ControlBd {
     }
 
     //Consultas
+    
+    public Object[][] getLibrosBy(String filter,String busqueda){
+        if(filter == "Año") filter="ano_publicacion";
+        String[] columnas={"isbn","nombre","editorial","autor","precio",
+        "ano_publicacion","estado","existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where "+filter.toLowerCase()+" like '%"+busqueda+"%';");
+        return resultado;
+    }
     
     public Object[][] getLibrosByIsbn(String isbn){
         String[] columnas={"isbn","nombre","editorial","autor","precio",

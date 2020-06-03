@@ -6,11 +6,15 @@
 package logic;
 
 import dao.ControlBd;
+import data.Libro;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +26,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -30,6 +38,7 @@ import javafx.stage.Window;
 
 public class MainMenuController implements Initializable {
     
+    
     @FXML
     private Button login;
     @FXML
@@ -37,14 +46,38 @@ public class MainMenuController implements Initializable {
     @FXML
     private TextField text_search;
     @FXML
-    private TextField text_lleg;
-    @FXML
     private Button button_search;
     
     private ControlBd control= new  ControlBd("root", "");
+    @FXML
+    private ComboBox<String> menu_filter;
 
+    private ObservableList<String> filtrosLibros=FXCollections.observableArrayList(
+    "Nombre","Editorial","Autor","ISBN");
     //Creación popup Login//
-    
+    @FXML
+    private TextField text_search1;
+    @FXML
+    private Button button_search1;
+    @FXML
+    private ComboBox<?> menu_filter1;
+    @FXML
+    private AnchorPane anchorBusquedaLibros;
+    private ArrayList<Libro> arrayLibros = new ArrayList<>();
+    private ObservableList<Libro> listaLibros;
+    @FXML
+    private TableColumn<Libro, String> columnNombreBusquedaLibro;
+    @FXML
+    private TableColumn<Libro, String> columnAutorBusquedaLibro;
+    @FXML
+    private TableColumn<Libro, String> columnEditorialBusquedaLibro;
+    @FXML
+    private TableColumn<Libro, String> columnIsbnBusquedaLibro;
+    @FXML
+    private TableView<Libro> tableBusquedaLibros;
+    @FXML
+    private AnchorPane anchorHome;
+
     public void popupLogin(final Stage stage) throws IOException {         
     final Popup popup = new Popup(); 
   
@@ -100,6 +133,7 @@ public class MainMenuController implements Initializable {
     
     //Método  para llamar a popup Login//
     
+    @FXML
         public void loginButtonPushed(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
             
@@ -113,6 +147,7 @@ public class MainMenuController implements Initializable {
         
     //Método  para llamar a popup Registro//   
         
+    @FXML
         public void registroButtonPushed(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
             
@@ -142,10 +177,48 @@ public class MainMenuController implements Initializable {
         }
         return tabla;
     }
+
+    public String getMenu_filter() {
+        return menu_filter.getValue();
+    }
+
+   
+   
     
-    @Override
+     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        anchorHome.toFront();
+        menu_filter.setItems(filtrosLibros);
+        menu_filter.setValue("Nombre");
     }    
-    
+
+    @FXML
+    public void onClicBuscarLibro(ActionEvent event) {
+        anchorBusquedaLibros.toFront();
+        Object[][] libros=control.getLibrosBy(menu_filter.getValue(),text_search.getText());
+        for (Object[] currentLibro : libros) {
+            boolean flag=false;
+            for (Object object : currentLibro) {
+                if(object==null){
+                    flag=true;
+                    break;
+                }
+            }
+            if(flag==false){
+            Libro libro=new Libro(currentLibro[0].toString(), currentLibro[1].toString(),
+                    currentLibro[2].toString(), currentLibro[3].toString(),
+                    currentLibro[4].toString(), currentLibro[5].toString(),
+                    currentLibro[6].toString(), currentLibro[7].toString());
+            arrayLibros.add(libro);
+            }
+        }
+        listaLibros = FXCollections.observableArrayList(arrayLibros);
+        columnNombreBusquedaLibro.setCellValueFactory(new PropertyValueFactory<Libro, String>("nombre"));
+        columnAutorBusquedaLibro.setCellValueFactory(new PropertyValueFactory<Libro, String>("autor"));
+        columnEditorialBusquedaLibro.setCellValueFactory(new PropertyValueFactory<Libro, String>("editorial"));
+        columnIsbnBusquedaLibro.setCellValueFactory(new PropertyValueFactory<Libro, String>("isbn"));
+        tableBusquedaLibros.setItems(listaLibros);
+        listaLibros.removeAll();
+        arrayLibros.removeAll(listaLibros);
+    }
 }
