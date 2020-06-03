@@ -230,4 +230,9 @@ public class MainMenuController implements Initializable {
         listaLibros.removeAll();
         arrayLibros.removeAll(listaLibros);
     }
+
+    @FXML
+    public void onClicVolverBusquedaLibros(ActionEvent event) {
+        anchorHome.toFront();
+    }
 }

@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.MainMenuController">
    <children>
-      <AnchorPane fx:id="anchorHome" layoutX="-2.0" style="-fx-background-color: #F2F2F2;">
+      <AnchorPane fx:id="anchorHome" layoutX="-2.0" style="-fx-background-color: #F2F2F2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="2.0" prefHeight="108.0" prefWidth="850.0" style="-fx-background-color: #F2F2F2;">
                <children>
@@ -50,11 +50,11 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="72.0" layoutY="275.0" prefHeight="234.0" prefWidth="710.0" style="-fx-background-color: #D8754E;">
+            <AnchorPane layoutX="72.0" layoutY="275.0" prefHeight="181.0" prefWidth="710.0" style="-fx-background-color: #D8754E;">
                <children>
-                  <AnchorPane layoutX="32.0" layoutY="20.0" prefHeight="160.0" prefWidth="650.0" style="-fx-background-color: #ffffff;">
+                  <AnchorPane layoutX="32.0" layoutY="20.0" prefHeight="110.0" prefWidth="650.0" style="-fx-background-color: #ffffff;">
                      <children>
-                        <AnchorPane prefHeight="192.0" prefWidth="650.0" style="-fx-background-color: #F2F2F2;">
+                        <AnchorPane prefHeight="142.0" prefWidth="650.0" style="-fx-background-color: #F2F2F2;">
                            <children>
                               <TextField fx:id="textSearchHome" layoutX="34.0" layoutY="70.0" prefHeight="45.0" prefWidth="346.0" promptText="Búsqueda Rápida" styleClass="text-field" stylesheets="@../Styles/TextStyle.css">
                                  <padding>
@@ -81,7 +81,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="29.0" layoutY="546.0">
+            <AnchorPane layoutX="29.0" layoutY="489.0" prefHeight="211.0" prefWidth="794.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="489.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -161,6 +161,11 @@
                                     <TableColumn fx:id="columnIsbnBusquedaLibro" prefWidth="197.5" text="ISBN" />
                                 </columns>
                               </TableView>
+                              <Button layoutY="507.0" mnemonicParsing="false" onAction="#onClicVolverBusquedaLibros" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Volver">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed Bold" size="16.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </children>
