@@ -31,11 +31,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
+
 
 public class MainMenuController implements Initializable {
     
@@ -76,7 +78,9 @@ public class MainMenuController implements Initializable {
     private TextField textSearchBusquedaLibros;
     @FXML
     private ComboBox<String> menuFilterBusquedaLibros;
-  
+    @FXML
+    private AnchorPane anchorBook;
+    int flag2;
 
     public void popupLogin(final Stage stage) throws IOException {         
     final Popup popup = new Popup(); 
@@ -230,9 +234,31 @@ public class MainMenuController implements Initializable {
         listaLibros.removeAll();
         arrayLibros.removeAll(listaLibros);
     }
+    
+    public void Detail_Search(MouseEvent event){
+        System.out.println("clicked on " + tableBusquedaLibros.getSelectionModel().getSelectedItem());
+         flag2=1;
+    }
+    
+    
 
     @FXML
     public void onClicVolverBusquedaLibros(ActionEvent event) {
         anchorHome.toFront();
+    }
+    
+    public void onClicDetalles(MouseEvent event) {
+        int flag=1;
+        libroDetalles(flag,flag2);  
+    }
+    
+    public void libroDetalles(int flag,int flag2){
+        if(flag==1&&flag2==1){
+            anchorBook.toFront();
+        }
+    }
+    
+    public void onClicVolverDetalles(ActionEvent event) {
+        anchorBusquedaLibros.toFront();
     }
 }
