@@ -268,6 +268,7 @@ public class MenuAdminController implements Initializable {
         flag2 = 1;
     }
 
+    @FXML
     public void onClicVolverBusquedaLibros(ActionEvent event) {
         anchorHome.toFront();
         llenarTablaBusquedaLibros("isbn", "");
@@ -345,5 +346,15 @@ public class MenuAdminController implements Initializable {
         precioDetalleLibro.setText("");
         cboxEstado.setValue("Disponible");
         numeroCopias.setText("1");
+    }
+
+    @FXML
+    public void onClicCrearLibro(ActionEvent event) {
+        Libro libro = new Libro(isbnDetalleLibro.getText(),
+                tituloDetalleLibro.getText(), editorialDetalleLibro.getText(),
+                autorDetalleLibro.getText(), precioDetalleLibro.getText(),
+                anoDetalleLibro.getText(), cboxEstado.getValue(),
+                numeroCopias.getText());
+        control.setLibro(libro);
     }
 }

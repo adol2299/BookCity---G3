@@ -70,8 +70,8 @@ public class ControlBd {
      public boolean setLibro(Libro libro) {
         String[] datos = {libro.getIsbn(),libro.getNombre(),libro.getEditorial(),
         libro.getAutor(),libro.getPrecio(),libro.getAno_publicacion(),
-        libro.getExistencia()};
-        return sen.insertar(datos, "insert into Usuario(isbn, nombre, editorial, "
+        libro.getEstado(), libro.getExistencia()};
+        return sen.insertar(datos, "insert into Libro(isbn, nombre, editorial, "
                 + "autor, precio, ano_publicacion, estado, existencia) "
                 + "values(?,?,?,?,?,?,?,?);");
     }
