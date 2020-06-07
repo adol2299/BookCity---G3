@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.MenuAdminController">
    <children>
       <AnchorPane fx:id="anchorHome" layoutX="-2.0" style="-fx-background-color: #F2F2F2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -127,6 +127,95 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="anchorBook" prefHeight="700.0" prefWidth="794.0" style="-fx-background-color: #F1DE9C;">
+         <children>
+            <AnchorPane layoutY="-2.0" prefHeight="115.0" prefWidth="851.0" style="-fx-background-color: #F2F2F2;">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="102.0" layoutX="13.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../airbook/images/LogosLogo-100.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="44.0" layoutY="155.0" prefHeight="500.0" prefWidth="763.0" style="-fx-background-color: #D8754E;">
+               <children>
+                  <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="473.0" prefWidth="736.0" style="-fx-background-color: #F2F2F2;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="189.0" text="Información Adicional">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="14.0" layoutY="425.0" mnemonicParsing="false" onAction="#onClicVolverDetalles" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Volver">
+                           <font>
+                              <Font name="Tw Cen MT Condensed Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="29.0" layoutY="51.0" prefHeight="23.0" prefWidth="99.0" text="Título:">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="29.0" layoutY="82.0" prefHeight="23.0" prefWidth="99.0" text="Autor:">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="29.0" layoutY="115.0" prefHeight="23.0" prefWidth="99.0" text="Editorial:">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="29.0" layoutY="150.0" prefHeight="23.0" prefWidth="148.0" text="Año de Publicación:">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="188.0" prefHeight="23.0" prefWidth="99.0" text="Código ISBN:">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="222.0" prefHeight="23.0" prefWidth="99.0" text="Precio:">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tituloDetalleLibro" layoutX="80.0" layoutY="50.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="autorDetalleLibro" layoutX="80.0" layoutY="81.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="editorialDetalleLibro" layoutX="96.0" layoutY="114.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="anoDetalleLibro" layoutX="177.0" layoutY="149.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="isbnDetalleLibro" editable="false" layoutX="129.0" layoutY="187.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="precioDetalleLibro" layoutX="80.0" layoutY="221.0" stylesheets="@../Styles/TextStyle.css" />
+                        <Button fx:id="btnActualizarLibro" layoutX="592.0" layoutY="425.0" mnemonicParsing="false" onAction="#onClicUpdateLibro" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Actualizar">
+                           <font>
+                              <Font name="Tw Cen MT Condensed Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="29.0" layoutY="259.0" prefHeight="26.0" prefWidth="149.0" text="Número de copias">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="29.0" layoutY="291.0" prefHeight="26.0" prefWidth="87.0" text="Estado">
+                           <font>
+                              <Font name="Tw Cen MT Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cboxEstado" layoutX="96.0" layoutY="292.0" onAction="#cambiarOpcionesNumeroCopias" prefWidth="150.0" />
+                        <TextField fx:id="numeroCopias" layoutX="177.0" layoutY="260.0" stylesheets="@../Styles/TextStyle.css" />
+                        <Button fx:id="btnCrearLibro" layoutX="592.0" layoutY="425.0" mnemonicParsing="false" onAction="#onClicUpdateLibro" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Crear">
+                           <font>
+                              <Font name="Tw Cen MT Condensed Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="anchorBusquedaLibros" layoutY="99.0" prefHeight="750.0" prefWidth="850.0" style="-fx-background-color: #D8754E;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="13.0" layoutY="13.0" prefHeight="638.0" prefWidth="837.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -158,7 +247,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="19.0" layoutY="118.0" prefHeight="599.0" prefWidth="792.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0">
                            <children>
-                              <TableView fx:id="tableBusquedaLibros" prefHeight="590.0" prefWidth="790.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="tableBusquedaLibros" onMouseClicked="#activarBotones" prefHeight="590.0" prefWidth="790.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <columns>
                                     <TableColumn fx:id="columnNombreBusquedaLibro" prefWidth="197.5" text="Nombre" />
                                     <TableColumn fx:id="columnAutorBusquedaLibro" prefWidth="197.5" text="Autor" />
@@ -166,17 +255,17 @@
                                     <TableColumn fx:id="columnIsbnBusquedaLibro" prefWidth="197.5" text="ISBN" />
                                  </columns>
                               </TableView>
-                              <Button layoutY="507.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Volver">
+                              <Button layoutY="507.0" mnemonicParsing="false" onAction="#onClicVolverBusquedaLibros" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Volver">
                                  <font>
                                     <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="646.0" layoutY="507.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Eliminar">
+                              <Button fx:id="editarLibro" disable="true" layoutX="646.0" layoutY="507.0" mnemonicParsing="false" onAction="#onClicEditarLibro" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Editar">
                                  <font>
                                     <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="505.0" layoutY="507.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Editar">
+                              <Button fx:id="nuevoLibro" layoutX="501.0" layoutY="508.0" mnemonicParsing="false" onAction="#onClicNuevoLibro" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Nuevo">
                                  <font>
                                     <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                                  </font>

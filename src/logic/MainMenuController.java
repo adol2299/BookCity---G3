@@ -80,7 +80,7 @@ public class MainMenuController implements Initializable {
     private ComboBox<String> menuFilterBusquedaLibros;
     @FXML
     private AnchorPane anchorBook;
-    int flag2,flag;
+  
     @FXML
     private TextField tituloDetalleLibro;
     @FXML
@@ -93,6 +93,12 @@ public class MainMenuController implements Initializable {
     private TextField isbnDetalleLibro;
     @FXML
     private TextField precioDetalleLibro;
+    @FXML
+    private Button btnVerMasDetallesLibro;
+    @FXML
+    private ComboBox<String> cboxNumeroCopias;
+    @FXML
+    private Button btnAgregarAlCarrito;
 
     public void popupLogin(final Stage stage) throws IOException {         
     final Popup popup = new Popup(); 
@@ -181,7 +187,7 @@ public class MainMenuController implements Initializable {
      
        
     public Object[][] searchByIsbn(){
-        Object[][] tabla=control.getLibrosByIsbn(textSearchHome.getText());
+        Object[][] tabla=control.getLibrosBy("isbn",textSearchHome.getText());
         int cont=1;
         for(Object[] fila:tabla){
             System.out.print("Libro #"+(cont++)+"//   ");
@@ -210,6 +216,7 @@ public class MainMenuController implements Initializable {
     @FXML
     public void onClicSearchLibroHome(ActionEvent event) {
         anchorBusquedaLibros.toFront();
+        btnVerMasDetallesLibro.setDisable(true);
         llenarTablaBusquedaLibros(menu_filter.getValue(),textSearchHome.getText());
         
     }
@@ -249,8 +256,7 @@ public class MainMenuController implements Initializable {
     
     @FXML
     public void Detail_Search(MouseEvent event){
-        System.out.println("clicked on " + tableBusquedaLibros.getSelectionModel().getSelectedItem());
-         flag2=1;
+        btnVerMasDetallesLibro.setDisable(false);
     }
     
     
@@ -262,32 +268,41 @@ public class MainMenuController implements Initializable {
     
     @FXML
     public void onClicDetalles(MouseEvent event) {
-        flag=1;
-        libroDetalles(flag,flag2);  
-    }
-    
-    public void libroDetalles(int flag,int flag2){
-        if(flag==1&&flag2==1){
-            llenarDetallesLibro();
+        llenarDetallesLibro();
             anchorBook.toFront();
-        }
+      
     }
     
-    public void llenarDetallesLibro(){
-        Libro libroSeleccionado=tableBusquedaLibros.getSelectionModel().getSelectedItem();
-        tituloDetalleLibro.setText(libroSeleccionado.getNombre());
-         autorDetalleLibro.setText(libroSeleccionado.getAutor());
-         editorialDetalleLibro.setText(libroSeleccionado.getEditorial());
-         anoDetalleLibro.setText(libroSeleccionado.getAno_publicacion());
-         isbnDetalleLibro.setText(libroSeleccionado.getIsbn());
-         precioDetalleLibro.setText(libroSeleccionado.getPrecio());
 
+        public void llenarDetallesLibro() {
+        Libro libroSeleccionado = tableBusquedaLibros.getSelectionModel().getSelectedItem();
+        tituloDetalleLibro.setText(libroSeleccionado.getNombre());
+        autorDetalleLibro.setText(libroSeleccionado.getAutor());
+        editorialDetalleLibro.setText(libroSeleccionado.getEditorial());
+        anoDetalleLibro.setText(libroSeleccionado.getAno_publicacion());
+        isbnDetalleLibro.setText(libroSeleccionado.getIsbn());
+        precioDetalleLibro.setText(libroSeleccionado.getPrecio()); 
+        ArrayList<String> ar = new ArrayList<>();
+        if (Integer.parseInt(libroSeleccionado.getExistencia()) != 0) {
+            btnAgregarAlCarrito.setDisable(false);
+            cboxNumeroCopias.setValue("1");
+            for (int i = 0; i < Integer.parseInt(libroSeleccionado.getExistencia()); i++) {
+                int j = i + 1;
+                ar.add(String.valueOf(j));
+            }
+            ObservableList<String> numeroCopias = FXCollections.observableArrayList(ar);
+            cboxNumeroCopias.setItems(numeroCopias);
+        } else {
+            cboxNumeroCopias.setValue("Sin stock");
+            cboxNumeroCopias.setDisable(true);
+            btnAgregarAlCarrito.setDisable(true);
+        }
+        
     }
     
     @FXML
     public void onClicVolverDetalles(ActionEvent event) {
         anchorBusquedaLibros.toFront();
-        flag=0;
-        flag2=0;
+        btnVerMasDetallesLibro.setDisable(true);
     }
 }

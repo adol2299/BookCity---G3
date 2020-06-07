@@ -5,6 +5,7 @@
  */
 package dao;
 
+import Entidad.Libro;
 import Entidad.Usuario;
 import static javafx.application.Application.launch;
 
@@ -49,63 +50,7 @@ public class ControlBd {
         return resultado;
     }
     
-    public Object[][] getLibrosByIsbn(String isbn){
-        String[] columnas={"isbn","nombre","editorial","autor","precio",
-        "ano_publicacion","estado","existencia"};
-        Object[][] resultado = sen.GetTabla(columnas, "libro", 
-                "select * FROM libro Where isbn like '%"+isbn+"%';");
-        return resultado;
-    }
-    public Object[][] getLibrosByNombre(String nombre){
-        String[] columnas={"nombre","nombre","editorial","autor","precio",
-        "ano_publicacion","estado","existencia"};
-        Object[][] resultado = sen.GetTabla(columnas, "libro", 
-                "select * FROM libro Where nombre like '%"+nombre+"%';");
-        return resultado;
-    }
-    public Object[][] getLibrosByEditorial(String editorial){
-        String[] columnas={"editorial","nombre","editorial","autor","precio",
-        "ano_publicacion","estado","existencia"};
-        Object[][] resultado = sen.GetTabla(columnas, "libro", 
-                "select * FROM libro Where editorial like '%"+editorial+"%';");
-        return resultado;
-    }
-    public Object[][] getLibrosByAutor(String autor){
-        String[] columnas={"autor","nombre","editorial","autor","precio",
-        "ano_publicacion","estado","existencia"};
-        Object[][] resultado = sen.GetTabla(columnas, "libro", 
-                "select * FROM libro Where autor like '%"+autor+"%';");
-        return resultado;
-    }
-    public Object[][] getLibrosByPrecio(String precio){
-        String[] columnas={"precio","nombre","editorial","autor","precio",
-        "ano_publicacion","estado","existencia"};
-        Object[][] resultado = sen.GetTabla(columnas, "libro", 
-                "select * FROM libro Where precio like '%"+precio+"%';");
-        return resultado;
-    }
-    public Object[][] getLibrosByAno(String ano_publicacion){
-        String[] columnas={"ano_publicacion","nombre","editorial","autor","precio",
-        "ano_publicacion","estado","existencia"};
-        Object[][] resultado = sen.GetTabla(columnas, "libro", 
-                "select * FROM libro Where ano_publicacion like '%"+ano_publicacion+"%';");
-        return resultado;
-    }
-    public Object[][] getLibrosByEstado(String estado){
-        String[] columnas={"estado","nombre","editorial","autor","precio",
-        "ano_publicacion","estado","existencia"};
-        Object[][] resultado = sen.GetTabla(columnas, "libro", 
-                "select * FROM libro Where estado like '%"+estado+"%';");
-        return resultado;
-    }
-    public Object[][] getLibrosByExistencia(String existencia){
-        String[] columnas={"existencia","nombre","editorial","autor","precio",
-        "ano_publicacion","estado","existencia"};
-        Object[][] resultado = sen.GetTabla(columnas, "libro", 
-                "select * FROM libro Where existencia like '%"+existencia+"%';");
-        return resultado;
-    }
-    
+  
     public boolean isContrasena(Usuario usuario) {
         String[] columnas = {"contrasena"};
         Object[][] contrasena = sen.GetTabla(columnas, "Usuario", "select contrasena FROM usuario Where cedula='" + usuario.getCedula() + "';");
@@ -122,5 +67,25 @@ public class ControlBd {
                 + " nombre, administrador) values(?,?,?,?);");
     }
 
-    //Arqueos
+     public boolean setLibro(Libro libro) {
+        String[] datos = {libro.getIsbn(),libro.getNombre(),libro.getEditorial(),
+        libro.getAutor(),libro.getPrecio(),libro.getAno_publicacion(),
+        libro.getExistencia()};
+        return sen.insertar(datos, "insert into Usuario(isbn, nombre, editorial, "
+                + "autor, precio, ano_publicacion, estado, existencia) "
+                + "values(?,?,?,?,?,?,?,?);");
+    }
+    
+    //Update
+    public boolean updateLibro(Libro libro){
+        String sql="update Libro set nombre='"+libro.getNombre()+"', "
+                + "editorial='"+libro.getEditorial()+"', "
+                + "autor='"+libro.getAutor()+"', "
+                + "precio='"+libro.getPrecio()+"', "
+                + "ano_publicacion='"+libro.getAno_publicacion()+"', "
+                + "estado='"+libro.getEstado()+"', "
+                + "existencia='"+libro.getExistencia()+
+                "' where isbn='"+libro.getIsbn()+"';";
+        return sen.update(sql);
+    }
 }
