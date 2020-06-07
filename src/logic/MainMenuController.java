@@ -80,7 +80,7 @@ public class MainMenuController implements Initializable {
     private ComboBox<String> menuFilterBusquedaLibros;
     @FXML
     private AnchorPane anchorBook;
-    int flag2;
+    int flag2,flag;
 
     public void popupLogin(final Stage stage) throws IOException {         
     final Popup popup = new Popup(); 
@@ -248,7 +248,7 @@ public class MainMenuController implements Initializable {
     }
     
     public void onClicDetalles(MouseEvent event) {
-        int flag=1;
+        flag=1;
         libroDetalles(flag,flag2);  
     }
     
@@ -260,5 +260,7 @@ public class MainMenuController implements Initializable {
     
     public void onClicVolverDetalles(ActionEvent event) {
         anchorBusquedaLibros.toFront();
+        flag=0;
+        flag2=0;
     }
 }
