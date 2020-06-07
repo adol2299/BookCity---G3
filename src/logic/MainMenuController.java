@@ -81,6 +81,18 @@ public class MainMenuController implements Initializable {
     @FXML
     private AnchorPane anchorBook;
     int flag2,flag;
+    @FXML
+    private TextField tituloDetalleLibro;
+    @FXML
+    private TextField autorDetalleLibro;
+    @FXML
+    private TextField editorialDetalleLibro;
+    @FXML
+    private TextField anoDetalleLibro;
+    @FXML
+    private TextField isbnDetalleLibro;
+    @FXML
+    private TextField precioDetalleLibro;
 
     public void popupLogin(final Stage stage) throws IOException {         
     final Popup popup = new Popup(); 
@@ -235,6 +247,7 @@ public class MainMenuController implements Initializable {
         arrayLibros.removeAll(listaLibros);
     }
     
+    @FXML
     public void Detail_Search(MouseEvent event){
         System.out.println("clicked on " + tableBusquedaLibros.getSelectionModel().getSelectedItem());
          flag2=1;
@@ -247,6 +260,7 @@ public class MainMenuController implements Initializable {
         anchorHome.toFront();
     }
     
+    @FXML
     public void onClicDetalles(MouseEvent event) {
         flag=1;
         libroDetalles(flag,flag2);  
@@ -254,10 +268,23 @@ public class MainMenuController implements Initializable {
     
     public void libroDetalles(int flag,int flag2){
         if(flag==1&&flag2==1){
+            llenarDetallesLibro();
             anchorBook.toFront();
         }
     }
     
+    public void llenarDetallesLibro(){
+        Libro libroSeleccionado=tableBusquedaLibros.getSelectionModel().getSelectedItem();
+        tituloDetalleLibro.setText(libroSeleccionado.getNombre());
+         autorDetalleLibro.setText(libroSeleccionado.getAutor());
+         editorialDetalleLibro.setText(libroSeleccionado.getEditorial());
+         anoDetalleLibro.setText(libroSeleccionado.getAno_publicacion());
+         isbnDetalleLibro.setText(libroSeleccionado.getIsbn());
+         precioDetalleLibro.setText(libroSeleccionado.getPrecio());
+
+    }
+    
+    @FXML
     public void onClicVolverDetalles(ActionEvent event) {
         anchorBusquedaLibros.toFront();
         flag=0;

@@ -242,12 +242,12 @@
                               <Font name="Tw Cen MT Bold" size="17.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="80.0" layoutY="50.0" stylesheets="@../Styles/TextStyle.css" />
-                        <TextField layoutX="80.0" layoutY="81.0" stylesheets="@../Styles/TextStyle.css" />
-                        <TextField layoutX="96.0" layoutY="114.0" stylesheets="@../Styles/TextStyle.css" />
-                        <TextField layoutX="177.0" layoutY="149.0" stylesheets="@../Styles/TextStyle.css" />
-                        <TextField layoutX="129.0" layoutY="187.0" stylesheets="@../Styles/TextStyle.css" />
-                        <TextField layoutX="80.0" layoutY="221.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="tituloDetalleLibro" layoutX="80.0" layoutY="50.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="autorDetalleLibro" layoutX="80.0" layoutY="81.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="editorialDetalleLibro" layoutX="96.0" layoutY="114.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="anoDetalleLibro" layoutX="177.0" layoutY="149.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="isbnDetalleLibro" layoutX="129.0" layoutY="187.0" stylesheets="@../Styles/TextStyle.css" />
+                        <TextField fx:id="precioDetalleLibro" layoutX="80.0" layoutY="221.0" stylesheets="@../Styles/TextStyle.css" />
                         <Button layoutX="592.0" layoutY="425.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Agreagr al carrito">
                            <font>
                               <Font name="Tw Cen MT Condensed Bold" size="16.0" />
