@@ -58,7 +58,7 @@ public class TestGestionInventario {
         Libro libro = new Libro("9789587048","Un mundo feliz","Planeta","Aldous Huxley","20000","1932","nuevo","1");
         assertEquals(validar.validarLibro(libro),ISBN_UNICO);
     }
-    
+   
     @Test
     public void TestLongitudISBN() {
         Libro libro = new Libro("1234567","Un mundo feliz","Planeta","Aldous Huxley","20000","1932","nuevo","1");
@@ -67,58 +67,58 @@ public class TestGestionInventario {
     
     @Test
     public void TestLongitudTitulo() {
-        Libro libro = new Libro("123456789","U","Planeta","Aldous Huxley","20000","1932","nuevo","1");
+        Libro libro = new Libro("1234567890","U","Planeta","Aldous Huxley","20000","1932","nuevo","1");
         assertEquals(validar.validarLibro(libro),LONG_TITULO);
         
-        libro = new Libro("123456789","Un mundo feliz Un mundo feliz Un mundo feliz","Planeta","Aldous Huxley","20000","1932","nuevo","1");     
+        libro = new Libro("1234567890","Un mundo feliz Un mundo feliz Un mundo feliz","Planeta","Aldous Huxley","20000","1932","nuevo","1");     
         assertEquals(validar.validarLibro(libro),LONG_TITULO);
     }
     
     @Test
     public void TestLongitudEditorial() {
-        Libro libro = new Libro("123456789","Un mundo feliz","Plan","Aldous Huxley","20000","1932","nuevo","1");
+        Libro libro = new Libro("1234567890","Un mundo feliz","Plan","Aldous Huxley","20000","1932","nuevo","1");
         assertEquals(validar.validarLibro(libro),LONG_EDITORIAL);
                 
-        libro = new Libro("123456789","Un mundo feliz","Planeta Planeta Planeta","Aldous Huxley","20000","1932","nuevo","1");
+        libro = new Libro("1234567890","Un mundo feliz","Planeta Planeta Planeta","Aldous Huxley","20000","1932","nuevo","1");
         assertEquals(validar.validarLibro(libro),LONG_EDITORIAL);
     }
     
     @Test
     public void TestLongAutor() {
-        Libro libro = new Libro("123456789","Un mundo feliz","Planeta","Ald","20000","1932","nuevo","1");
+        Libro libro = new Libro("1234567890","Un mundo feliz","Planeta","Ald","20000","1932","nuevo","1");
         assertEquals(validar.validarLibro(libro),LONG_AUTOR);
         
-        libro = new Libro("123456789","Un mundo feliz","Planeta","Aldous Huxley Aldous Huxley","20000","1932","nuevo","1");
+        libro = new Libro("1234567890","Un mundo feliz","Planeta","Aldous Huxley Aldous Huxley","20000","1932","nuevo","1");
         assertEquals(validar.validarLibro(libro),LONG_AUTOR);
     }
     
     @Test
     public void TestFormatoPrecio() {
-        Libro libro = new Libro("123456789","Un mundo feliz","Planeta","Aldous Huxley","fg","1932","nuevo","1");
+        Libro libro = new Libro("1234567890","Un mundo feliz","Planeta","Aldous Huxley","fg","1932","nuevo","1");
         assertEquals(validar.validarLibro(libro),FORMATO_PRECIO_INCORRECTO);
     }
     
     @Test
     public void TestPrecioLibro() {
-        Libro libro = new Libro("123456789","Un mundo feliz","Planeta","Aldous Huxley","0","1932","nuevo","1");
+        Libro libro = new Libro("1234567890","Un mundo feliz","Planeta","Aldous Huxley","0","1932","nuevo","1");
         assertEquals(validar.validarLibro(libro),PRECIO_LIBRO_INCORRECTO);
     }
     
     @Test
     public void TestFormatoAnoPublicacion() {
-        Libro libro = new Libro("123456789","Un mundo feliz","Planeta","Aldous Huxley","20000","abcd","nuevo","1");
+        Libro libro = new Libro("1234567890","Un mundo feliz","Planeta","Aldous Huxley","20000","abcd","nuevo","1");
         assertEquals(validar.validarLibro(libro),FOMRATO_ANO_PUBLICACION_INCORRECTO);
     }
     
     @Test
     public void TestAnoPublicacion() {
-        Libro libro = new Libro("123456789","Un mundo feliz","Planeta","Aldous Huxley","20000","2021","nuevo","1");
+        Libro libro = new Libro("1234567890","Un mundo feliz","Planeta","Aldous Huxley","20000","2021","nuevo","1");
         assertEquals(validar.validarLibro(libro),ANO_PUBLICACION_INVALIDO);
     }
     
     @Test
     public void TestTodoCorrecto() {
-        Libro libro = new Libro("123456789","Un mundo feliz","Planeta","Aldous Huxley","20000","1932","nuevo","1");
+        Libro libro = new Libro("1234567890","Un mundo feliz","Planeta","Aldous Huxley","20000","1932","nuevo","1");
         assertEquals(validar.validarLibro(libro),TODO_CORRECTO);
     }
 }

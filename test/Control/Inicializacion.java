@@ -47,14 +47,14 @@ public class Inicializacion {
                         
         // usuarios        
         //Usuario a = new Usuario("111111","maria","Contrasenia4");
-        Usuario b = new Usuario("1234567852","AndresOrtega","12345as");
+        //Usuario b = new Usuario("1234567852","AndresOrtega","12345as");
         
-        SQL_Sentencias sql = new SQL_Sentencias();
+        //SQL_Sentencias sql = new SQL_Sentencias();
         //sql.insertarUsuario(a);
-        sql.insertarUsuario(b);
+        //sql.insertarUsuario(b);
         
-        private ControlBd control = new ControlBd("root", "");
-        Libro libro = new libro("9789587048","Demasiados héroes","Alfaguara","Laura Restrepo","20000","2009","nuevo","1");
+        ControlBd control = new ControlBd("root", "");
+        Libro libro = new Libro("9789587048","Demasiados héroes","Alfaguara","Laura Restrepo","20000","2009","nuevo","1");
         control.setLibro(libro);
        
     }
