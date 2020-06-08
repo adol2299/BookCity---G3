@@ -43,6 +43,7 @@ public class RegistroController {
         String usuario = usu.getNombre();
         String cedula = usu.getCedula();
         String password = usu.getContrasena();
+        Validation val = new Validation();
         
         if(usuario.isEmpty())            
             return "Debe llenar el campo de Nombre";
@@ -50,17 +51,17 @@ public class RegistroController {
             return "Debe llenar el campo de Cédula";
         if(password.isEmpty())  
             return "Debe llenar el campo de Contraseña";
-        if(!longNombre(usuario))
+        if(!val.longNombre(usuario))
             return "Longitud de nombre incorrecta";
-        if(!longCedula(cedula))
+        if(!val.longCedula(cedula))
             return "Longitud de cédula incorrecta";
-        if(!longPassw(password))
+        if(!val.longPassw(password))
             return "Longitud de contraseña incorrecta";       
-        if(numCedula(cedula))
+        if(val.numericOnly(cedula))
             return "Solo se admiten números en la cédula";       
-        if(txtNombre(usuario))
+        if(val.textOnly(usuario))
             return "No se admiten números en el Nombre";
-        if(testRegEx(password))
+        if(val.testRegExPass(password))
             return "No se aceptan caracteres especiales en la contraseña";
         
         return "Correcto";
@@ -87,46 +88,6 @@ public class RegistroController {
         }
         else
             return test;
-    }
-    
-    public boolean txtNombre(String nombre)
-    {   String n;
-        String[] array = nombre.split("");
-        for (String tab : array) 
-        {   if(tab.matches("\\d"))
-                return true;
-        }
-        return false;
-    }
-    
-    public boolean numCedula(String cedula)
-    {   double n = 0;
-        try
-        {   n = Double.parseDouble(cedula); }
-        catch(Exception ex)
-        {   return true;    }
-        return false;
-    }
-    
-    public boolean longNombre(String usuario){
-    return(usuario.length()>1 && usuario.length()<=16);
-    }
-    public boolean longCedula(String cedula){
-    return(cedula.length()>4 && cedula.length()<=13);
-    }
-    public boolean longPassw(String password){
-    return(password.length()>6 && password.length()<=13);
-    }
-
-    public boolean testRegEx(String password)
-    {   // expresión regular que revisa si tiene alguno de los siguientes caracteres
-        String REG_EXP = "\\_+|\\¿+|\\?+|\\°+|\\¬+|\\|+|\\!+|\\#+|\\$+|" +
-        "\\%+|\\&+|\\+|\\=+|\\’+|\\¡+|\\++|\\*+|\\~+|\\[+|\\]" +
-        "+|\\{+|\\}+|\\^+|\\<+|\\>+|\\\"+ ";
-        Pattern pattern = Pattern.compile(REG_EXP);
-        Matcher matcher = pattern.matcher(password);
-        //retorna true si tiene alguno de los caracteres anteriores o false si no tiene ninguno
-        return matcher.find(); 
     }
     
 }

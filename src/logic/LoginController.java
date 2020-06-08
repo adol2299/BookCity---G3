@@ -10,9 +10,13 @@ import Entidad.Usuario;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  *
@@ -30,11 +34,24 @@ public class LoginController {
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) 
                alert.close(); 
+        //Se abre el scene correspondiente al admin en caso de que el usuario que inicie sesión sea admin
+        if(AirBook.usu.isAdministrador())
+        {   Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MenuAdmin.fxml"));         
+            Scene scene = new Scene (root);   
+            scene.getStylesheets().add("/Styles/TextStyle.css");
+            Stage stage= new Stage();
+            stage.setScene(scene);
+            stage.show();
+        }
+        //Queda pendiente hacer que el menú que se habia abierto antes se cierre
+        //Y que el propio popup del Login también se cierre, pero no se como hacerlo
+        //Andrés y David, les recomiendo eso y de paso me enseñan, gracias xd.
     }
     
     public String login(Usuario usu)
     {   SQL_Sentencias sql = new SQL_Sentencias();
-        if(sql.Login(usu)>0)
+        AirBook.usu = sql.Login(usu);
+        if(!AirBook.usu.getNombre().equals(""))
             return "Bienvenido";
         else
             return "Datos incorrectos";

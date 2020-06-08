@@ -5,6 +5,7 @@
  */
 package logic;
 
+import Entidad.Usuario;
 import java.io.IOException;
 import javafx.application.*;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,8 @@ import javafx.geometry.*;
  * @author Familia Ortega
  */
 public class AirBook extends Application {
+    
+    public static Usuario usu = new Usuario();
     
     @Override
     public void start(Stage stage) throws IOException {

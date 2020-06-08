@@ -58,18 +58,36 @@ public class SQL_Sentencias {
     }
     
     //Método para Login a partir de un objeto de la clase Usuario
-    public int Login(Usuario usu) {
-        int registros = 0;
+    public Usuario Login(Usuario usu) {
+        Usuario a = new Usuario("","","");
         try {
-            ps = con.conectado().prepareStatement("select count(cedula) as conteo from Usuario "
+            ps = con.conectado().prepareStatement("select cedula, nombre, contrasena, administrador from Usuario "
                     + "where cedula = "+usu.getCedula()+" and contrasena = '"+usu.getContrasena()+"'");
             res = ps.executeQuery();
             res.next();
-            registros = res.getInt("conteo");
+            a.setCedula(res.getString("cedula"));
+            a.setNombre(res.getString("nombre"));
+            a.setContrasena(res.getString("contrasena"));
+            a.setAdministrador(res.getBoolean("administrador"));
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return registros;
+        return a;
+    }
+    
+    //Método para consultar si un ISBN ya se encuentra registrado
+    public int UniqueISBN(String ISBN) {
+        int a = 0;
+        try {
+            ps = con.conectado().prepareStatement("select count(ISBN) as conteo from Libro "
+                    + "where ISBN = '"+ISBN+"'");
+            res = ps.executeQuery();
+            res.next();
+            a = res.getInt("conteo");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return a;
     }
 
     

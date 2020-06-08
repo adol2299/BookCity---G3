@@ -26,6 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -110,6 +111,8 @@ public class MenuAdminController implements Initializable {
     private Button btnActualizarLibro;
     @FXML
     private Button btnCrearLibro;
+    
+    private Validation val = new Validation();
 
     public void popupLogin(final Stage stage) throws IOException {
         final Popup popup = new Popup();
@@ -326,7 +329,20 @@ public class MenuAdminController implements Initializable {
                 autorDetalleLibro.getText(), precioDetalleLibro.getText(),
                 anoDetalleLibro.getText(), cboxEstado.getValue(),
                 numeroCopias.getText());
-        control.updateLibro(libro);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, editLibro(libro), ButtonType.OK);
+                alert.showAndWait();
+                if (alert.getResult() == ButtonType.OK) 
+                   alert.close();
+    }
+    
+    public String editLibro(Libro libro)
+    {   String test = val.validarLibro(libro);
+        if(test.equals("correcto"))
+        {   control.updateLibro(libro);
+            return "El libro ha sido actualizado correctamente";
+        }
+        else
+            return test;
     }
 
     @FXML
@@ -351,10 +367,23 @@ public class MenuAdminController implements Initializable {
     @FXML
     public void onClicCrearLibro(ActionEvent event) {
         Libro libro = new Libro(isbnDetalleLibro.getText(),
-                tituloDetalleLibro.getText(), editorialDetalleLibro.getText(),
-                autorDetalleLibro.getText(), precioDetalleLibro.getText(),
-                anoDetalleLibro.getText(), cboxEstado.getValue(),
-                numeroCopias.getText());
-        control.setLibro(libro);
+            tituloDetalleLibro.getText(), editorialDetalleLibro.getText(),
+            autorDetalleLibro.getText(), precioDetalleLibro.getText(),
+            anoDetalleLibro.getText(), cboxEstado.getValue(),
+            numeroCopias.getText());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, createLibro(libro), ButtonType.OK);
+                alert.showAndWait();
+                if (alert.getResult() == ButtonType.OK) 
+                   alert.close();
+        
+    }
+    public String createLibro(Libro libro)
+    {   String test = val.validarLibro(libro);
+        if(test.equals("correcto"))
+        {   control.setLibro(libro);
+            return "El libro ha sido registrado correctamente";
+        }
+        else
+            return test;
     }
 }
