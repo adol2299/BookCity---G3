@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import Entidad.Usuario;
+import Entidad.Libro;
+import dao.ControlBd;
 
 
 
@@ -51,6 +53,9 @@ public class Inicializacion {
         //sql.insertarUsuario(a);
         sql.insertarUsuario(b);
         
+        private ControlBd control = new ControlBd("root", "");
+        Libro libro = new libro("9789587048","Demasiados héroes","Alfaguara","Laura Restrepo","20000","2009","nuevo","1");
+        control.setLibro(libro);
        
     }
 }
