@@ -149,7 +149,6 @@ public class SQL_Sentencias {
         } catch (SQLException e) {
             System.out.println(e);
         }
-
         if (registros > 0) {
             return true;
         } else {

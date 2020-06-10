@@ -333,6 +333,7 @@ public class MenuAdminController implements Initializable {
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.OK) 
                    alert.close();
+                
     }
     
     public String editLibro(Libro libro)

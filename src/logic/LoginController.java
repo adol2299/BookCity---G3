@@ -43,6 +43,7 @@ public class LoginController {
             stage.setScene(scene);
             stage.show();
         }
+        
         //Queda pendiente hacer que el menú que se habia abierto antes se cierre
         //Y que el propio popup del Login también se cierre, pero no se como hacerlo
         //Andrés y David, les recomiendo eso y de paso me enseñan, gracias xd.

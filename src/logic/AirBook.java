@@ -33,6 +33,7 @@ public class AirBook extends Application {
         Scene scene = new Scene (root);   
         scene.getStylesheets().add("/Styles/TextStyle.css");
         stage.setScene(scene);
+        
         stage.show();
     }
 

@@ -14,6 +14,7 @@ public class Usuario {
     private String nombre;
     private String contrasena;
     private boolean administrador;
+    
 
     public Usuario(String cedula, String nombre, String contrasena) {
         this.administrador = false;
