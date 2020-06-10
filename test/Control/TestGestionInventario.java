@@ -24,14 +24,14 @@ public class TestGestionInventario {
     public static Validation validar = new Validation();
     
     private String ISBN_UNICO = "El ISBN ya se encuentra registrado";
-    private String LONG_ISBN = "El ISBN no es válido";
-    private String LONG_TITULO = "El Nombre registrado no es válido";
-    private String LONG_EDITORIAL = "La Editorial registrada no es válida";
-    private String LONG_AUTOR = "El Autor registrado no es válido";
+    private String LONG_ISBN = "El ISBN debe tener 10 caracteres";
+    private String LONG_TITULO = "El Nombre debe tener entre 2 y 40 caracteres";
+    private String LONG_EDITORIAL = "La Editorial debe tener entre 5 y 19 caracteres";
+    private String LONG_AUTOR = "El Autor debe tener entre 5 y 19 caracteres";
     private String FORMATO_PRECIO_INCORRECTO = "El Precio tiene un formato incorrecto";
-    private String PRECIO_LIBRO_INCORRECTO = "El Precio registrado no es válido";
+    private String PRECIO_LIBRO_INCORRECTO = "El Precio registrado debe ser mayor a $0.00";
     private String FOMRATO_ANO_PUBLICACION_INCORRECTO = "El Año de publicación tiene un formato incorrecto";
-    private String ANO_PUBLICACION_INVALIDO = "El Año de publicación registrado no es válido";
+    private String ANO_PUBLICACION_INVALIDO = "El Año de publicación no puede ser mayor al año actual";
     private String TODO_CORRECTO = "correcto";
             
     public TestGestionInventario() {
@@ -56,7 +56,7 @@ public class TestGestionInventario {
     @Test
     public void TestISBNUnico() {
         Libro libro = new Libro("9789587048","Un mundo feliz","Planeta","Aldous Huxley","20000","1932","nuevo","1");
-        assertEquals(validar.validarLibro(libro),ISBN_UNICO);
+        assertEquals(validar.validarISBN(libro.getIsbn()),ISBN_UNICO);
     }
    
     @Test

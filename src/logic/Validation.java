@@ -58,25 +58,29 @@ public class Validation {
         }
         return false;
     }
+    public String validarISBN(String ISBN)
+    {   SQL_Sentencias sql = new SQL_Sentencias();
+        if(sql.UniqueISBN(ISBN)>0)
+            return "El ISBN ya se encuentra registrado"; 
+        else
+            return "";
+    }
     
     public String validarLibro(Libro libro)
-    {   SQL_Sentencias sql = new SQL_Sentencias();
-        if(sql.UniqueISBN(libro.getIsbn())>0)
-            return "El ISBN ya se encuentra registrado";
-        if(libro.getIsbn().length()!=10)
-            return "El ISBN no es válido";
+    {   if(libro.getIsbn().length()!=10)
+            return "El ISBN debe tener 10 caracteres";
         if(libro.getNombre().length()<=1 || libro.getNombre().length()>40)
-            return "El Nombre registrado no es válido";
+            return "El Nombre debe tener entre 2 y 40 caracteres";
         if(libro.getEditorial().length()<=4 || libro.getEditorial().length()>=20)
-            return "La Editorial registrada no es válida";
+            return "La Editorial debe tener entre 5 y 19 caracteres";
         if(libro.getAutor().length()<=4 || libro.getAutor().length()>=20)
-            return "El Autor registrado no es válido";
+            return "El Autor debe tener entre 5 y 19 caracteres";
         if(numericOnly(libro.getPrecio()))
             return "El Precio tiene un formato incorrecto";
         else
         {   int p = Integer.parseInt(libro.getPrecio());
             if(p<=0)
-                return "El Precio registrado no es válido";
+                return "El Precio registrado debe ser mayor a $0.00";
         }
         if(numericOnly(libro.getAno_publicacion()))
             return "El Año de publicación tiene un formato incorrecto";
@@ -85,7 +89,7 @@ public class Validation {
             Calendar cal = Calendar.getInstance();
             int year = cal.get(Calendar.YEAR);
             if(p>year)
-                return "El Año de publicación registrado no es válido";
+                return "El Año de publicación no puede ser mayor al año actual";
         }
         return "correcto";
         

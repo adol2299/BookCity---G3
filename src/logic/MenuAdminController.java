@@ -380,6 +380,9 @@ public class MenuAdminController implements Initializable {
     }
     public String createLibro(Libro libro)
     {   String test = val.validarLibro(libro);
+        String isbn = val.validarISBN(libro.getIsbn());
+        if(!isbn.equals(""))
+            return isbn;
         if(test.equals("correcto"))
         {   control.setLibro(libro);
             return "El libro ha sido registrado correctamente";
