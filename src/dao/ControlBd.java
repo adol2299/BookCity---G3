@@ -5,6 +5,7 @@
  */
 package dao;
 
+import Entidad.Factura;
 import Entidad.Libro;
 import Entidad.Usuario;
 import static javafx.application.Application.launch;
@@ -57,6 +58,14 @@ public class ControlBd {
         boolean resultado=false;
         if(contrasena[0][0].toString().equals(usuario.getContrasena())) resultado=true;
         return resultado;
+    }
+
+    public boolean setFactura(Factura factura) {
+        String[] datos = {factura.getId(),factura.getDireccion(),
+        factura.getFecha(),factura.getValor(),factura.getDomicilio_id(),
+        factura.getLibreria_nit(),factura.getUsuario_cedula()};
+        return sen.insertar(datos, "insert into Factura(id, direccion, fecha,"
+                + "valor, Domicilio_id, Liberia_nit, Usuario_cedula) values(?,?,?,?,?,?,?);");
     }
 
 
