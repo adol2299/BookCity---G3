@@ -24,8 +24,9 @@ public class ControlBd {
 
     public static void main(String[] args) {
 //        ControlBd control = new ControlBd("root", "");
-//        Usuario usuario = new Usuario("11122213","delverde");
-//        control.isContrasena(usuario);
+//        System.out.println("heyy");
+//        Factura factura= new Factura("sasa",  "sasa", "sasa","sasa","sasa","sasa");
+//        control.setFactura(factura);
     }   
     public ControlBd(String user, String pass) {
         this.user = user;
@@ -59,13 +60,13 @@ public class ControlBd {
         if(contrasena[0][0].toString().equals(usuario.getContrasena())) resultado=true;
         return resultado;
     }
-
+    //Metodo para insertar nueva Factura
     public boolean setFactura(Factura factura) {
-        String[] datos = {factura.getId(),factura.getDireccion(),
-        factura.getFecha(),factura.getValor(),factura.getDomicilio_id(),
+        String[] datos = {factura.getDireccion(),
+        factura.getFecha(),factura.getValor(), String.valueOf(factura.getDomicilio_id()),
         factura.getLibreria_nit(),factura.getUsuario_cedula()};
-        return sen.insertar(datos, "insert into Factura(id, direccion, fecha,"
-                + "valor, Domicilio_id, Liberia_nit, Usuario_cedula) values(?,?,?,?,?,?,?);");
+        return sen.insertarFactura(datos, "insert into Factura(direccion, fecha,"
+                + "valor, Domicilio_id, Libreria_nit, Usuario_cedula) values(?,?,?,?,?,?);");
     }
 
 

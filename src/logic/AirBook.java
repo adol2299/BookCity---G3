@@ -5,7 +5,9 @@
  */
 package logic;
 
+import Entidad.Factura;
 import Entidad.Usuario;
+import dao.ControlBd;
 import java.io.IOException;
 import javafx.application.*;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +31,7 @@ public class AirBook extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
+        ControlBd control = new ControlBd("root", "");
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
         Scene scene = new Scene (root);   
         scene.getStylesheets().add("/Styles/TextStyle.css");

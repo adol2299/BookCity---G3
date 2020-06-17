@@ -15,11 +15,13 @@ import java.sql.SQLException;
 
 public class SQL_Conexion {
     private final String url = "jdbc:mysql://localhost/bookcity";
+    
     PreparedStatement psPrepararSentencia;
     Connection con = null;
     public SQL_Conexion(String user, String pass) {
      try{
-         Class.forName("com.mysql.cj.jdbc.Driver");
+         Class.forName("com.mysql.jdbc.Driver");
+
          //junto a "root" poner la contraseña de su servidor de MySQL
          con = DriverManager.getConnection(url,"root","");
          //con = DriverManager.getConnection(url,user,pass);

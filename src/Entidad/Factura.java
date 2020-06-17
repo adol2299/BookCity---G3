@@ -15,11 +15,10 @@ public class Factura {
     private String fecha;
     private String valor;
     private String libreria_nit;
-    private String domicilio_id;
+    private int domicilio_id;
     private String usuario_cedula;
 
-    public Factura(String id, String direccion, String fecha, String valor, String libreria_nit, String domicilio_id, String usuario_cedula) {
-        this.id = id;
+    public Factura(String direccion, String fecha, String valor, int domicilio_id,String libreria_nit, String usuario_cedula) {
         this.direccion = direccion;
         this.fecha = fecha;
         this.valor = valor;
@@ -70,11 +69,11 @@ public class Factura {
         this.libreria_nit = libreria_nit;
     }
 
-    public String getDomicilio_id() {
+    public int getDomicilio_id() {
         return domicilio_id;
     }
 
-    public void setDomicilio_id(String domicilio_id) {
+    public void setDomicilio_id(int domicilio_id) {
         this.domicilio_id = domicilio_id;
     }
 

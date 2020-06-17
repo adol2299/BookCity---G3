@@ -41,7 +41,27 @@ public class SQL_Sentencias {
         }
         return estado;
     }
-
+    
+    public boolean insertarFactura(String datos[], String insert) {
+        boolean estado = false;
+        try {
+            ps = con.conectado().prepareStatement(insert);
+            for (int i = 0; i <= datos.length - 1; i++) {
+                if(i!=3){
+                    ps.setString(i + 1, datos[i]);
+                }else{
+                    ps.setInt(i+1, Integer.parseInt(datos[i]));
+                }
+            }
+            ps.execute();
+            ps.close();
+            estado = true;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return estado;
+    }
+    
     //Método para registrar un nuevo usuario en la BD a partir de un objeto de la clase Usuario
     public boolean insertarUsuario(Usuario usu) {
         boolean estado = false;
