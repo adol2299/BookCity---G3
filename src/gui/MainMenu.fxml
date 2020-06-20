@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.MainMenuController">
    <children>
-      <AnchorPane fx:id="anchorBook" prefHeight="700.0" prefWidth="794.0" style="-fx-background-color: #F1DE9C;">
+      <AnchorPane fx:id="anchorBook" prefHeight="700.0" prefWidth="726.0" style="-fx-background-color: #F1DE9C;">
          <children>
             <AnchorPane layoutY="-2.0" prefHeight="115.0" prefWidth="851.0" style="-fx-background-color: #F2F2F2;">
                <children>
@@ -213,12 +213,12 @@
                      <children>
                         <AnchorPane layoutX="19.0" layoutY="118.0" prefHeight="599.0" prefWidth="792.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0">
                            <children>
-                              <TableView fx:id="tableBusquedaLibros" onMouseClicked="#Detail_Search" prefHeight="590.0" prefWidth="790.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="tableBusquedaLibros" onMouseClicked="#Detail_Search" prefHeight="590.0" prefWidth="790.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../Styles/TextStyle.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                  <TableColumn fx:id="columnNombreBusquedaLibro" prefWidth="197.5" text="Nombre" />
-                                  <TableColumn fx:id="columnAutorBusquedaLibro" prefWidth="197.5" text="Autor" />
-                                    <TableColumn fx:id="columnEditorialBusquedaLibro" prefWidth="197.5" text="Editorial" />
-                                    <TableColumn fx:id="columnIsbnBusquedaLibro" prefWidth="197.5" text="ISBN" />
+                                  <TableColumn fx:id="columnNombreBusquedaLibro" prefWidth="197.5" styleClass="column-header-background" text="Nombre" />
+                                  <TableColumn fx:id="columnAutorBusquedaLibro" prefWidth="197.5" styleClass="column-header-background" text="Autor" />
+                                    <TableColumn fx:id="columnEditorialBusquedaLibro" prefWidth="197.5" styleClass="column-header-background" text="Editorial" />
+                                    <TableColumn fx:id="columnIsbnBusquedaLibro" prefWidth="197.5" styleClass="column-header-background" text="ISBN" />
                                 </columns>
                               </TableView>
                               <Button layoutY="507.0" mnemonicParsing="false" onAction="#onClicVolverBusquedaLibros" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Volver">
@@ -235,7 +235,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="34.0" layoutY="26.0" prefHeight="74.0" prefWidth="790.0" AnchorPane.bottomAnchor="586.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <children>
-                              <TextField fx:id="textSearchBusquedaLibros" layoutY="44.0" onKeyTyped="#onClicTxtBusquedaLibro" prefHeight="40.0" prefWidth="562.0" promptText="Búsqueda Rápida" styleClass="text-field" stylesheets="@../Styles/TextStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="228.0">
+                              <TextField fx:id="textSearchBusquedaLibros" layoutY="51.0" onKeyTyped="#onClicTxtBusquedaLibro" prefHeight="40.0" prefWidth="562.0" promptText="Búsqueda Rápida" styleClass="text-field" stylesheets="@../Styles/TextStyle.css" AnchorPane.bottomAnchor="-17.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="228.0">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
@@ -243,7 +243,19 @@
                                     <Insets />
                                  </opaqueInsets>
                               </TextField>
-                              <ComboBox fx:id="menuFilterBusquedaLibros" depthTest="DISABLE" layoutX="558.0" layoutY="46.0" prefHeight="0.0" prefWidth="220.0" promptText="Filtros" styleClass="combo-box" stylesheets="@../Styles/TextStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="558.0" AnchorPane.rightAnchor="12.0" />
+                              <ComboBox fx:id="menuFilterBusquedaLibros" depthTest="DISABLE" layoutX="558.0" layoutY="66.0" prefHeight="0.0" prefWidth="220.0" promptText="Filtros" styleClass="combo-box" stylesheets="@../Styles/TextStyle.css" AnchorPane.bottomAnchor="-17.0" AnchorPane.leftAnchor="558.0" AnchorPane.rightAnchor="12.0" />
+                              <Button fx:id="carrito" layoutX="648.0" mnemonicParsing="false" onAction="#carritoButtonPushed" prefHeight="57.0" prefWidth="130.0" styleClass="combo-box" stylesheets="@../Styles/TextStyle.css" text="Mi Carrito" textAlignment="RIGHT">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../airbook/images/shopping_cart_24px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </children>

@@ -47,6 +47,8 @@ public class MainMenuController implements Initializable {
     @FXML
     private Button registro;
     @FXML
+    private Button carrito;
+    @FXML
     private TextField textSearchHome;
     @FXML
     private Button button_search;
@@ -99,6 +101,8 @@ public class MainMenuController implements Initializable {
     private ComboBox<String> cboxNumeroCopias;
     @FXML
     private Button btnAgregarAlCarrito;
+    
+    //Creación Popup Login//
 
     public void popupLogin(final Stage stage) throws IOException {         
     final Popup popup = new Popup(); 
@@ -152,6 +156,33 @@ public class MainMenuController implements Initializable {
         stage.show();
     }
     
+   
+   //Creación Popup Carrito//
+   
+    public void popupCarrito(final Stage stage) throws IOException {         
+    final Popup popup = new Popup(); 
+  
+    Button show = new Button("Show");
+    show.setOnAction(new EventHandler<ActionEvent>() {
+      @Override public void handle(ActionEvent event) {
+        popup.show(stage);
+      }
+    });
+
+    Button hide = new Button("Hide");
+    hide.setOnAction(new EventHandler<ActionEvent>() {
+      @Override public void handle(ActionEvent event) {
+        popup.hide();
+      }
+    });
+
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Carrito.fxml"));         
+            
+        Scene scene = new Scene (root);      
+        
+        stage.setScene(scene);
+        stage.show();
+    }
     
     //Método  para llamar a popup Login//
     
@@ -180,7 +211,19 @@ public class MainMenuController implements Initializable {
 
         popupRegistro(stage);
          }
-    
+        
+    //Método para llamar a popup Carrito//    
+    @FXML
+        public void carritoButtonPushed(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
+            
+        Scene scene = new Scene (root);      
+        
+        Stage stage= new Stage();
+        stage.setScene(scene);
+
+        popupCarrito(stage);
+         }
         
         
         

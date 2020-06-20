@@ -59,3 +59,7 @@ and open the template in the editor.
     -fx-text-fill:#D8754E;
     
 }
+
+.table-view .column-header-background {
+    -fx-background-color: #FAD5B8;
+}
