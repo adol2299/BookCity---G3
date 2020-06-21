@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -74,6 +75,8 @@ public class MainMenuController implements Initializable {
     private ComboBox<String> menuFilterBusquedaLibros;
     @FXML
     private AnchorPane anchorBook;
+    @FXML
+     static private AnchorPane anchorEnvio;
   
     @FXML
     private TextField tituloDetalleLibro;
@@ -309,7 +312,7 @@ public class MainMenuController implements Initializable {
     }
     
     @FXML
-    public void onClicDetalles(MouseEvent event) {
+    public void onClicDetalles(ActionEvent event) {
         llenarDetallesLibro();
             anchorBook.toFront();
       
@@ -346,5 +349,10 @@ public class MainMenuController implements Initializable {
     public void onClicVolverDetalles(ActionEvent event) {
         anchorBusquedaLibros.toFront();
         btnVerMasDetallesLibro.setDisable(true);
+    }
+    
+    @FXML
+    static public void onClicIrEnvio(ActionEvent event) {
+        anchorEnvio.toFront();
     }
 }

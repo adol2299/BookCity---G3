@@ -27,13 +27,13 @@
                   <Font name="Tw Cen MT Condensed" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="50.0" layoutY="493.0" promptText="Total a pagar" stylesheets="@../Styles/TextStyle.css" />
-            <Label layoutX="50.0" layoutY="459.0" prefHeight="27.0" prefWidth="83.0" text="Total a Pagar">
+            <TextField layoutX="50.0" layoutY="493.0" promptText="Subtotal a pagar" stylesheets="@../Styles/TextStyle.css" />
+            <Label layoutX="50.0" layoutY="459.0" prefHeight="27.0" prefWidth="83.0" text="Subtotal">
                <font>
                   <Font name="Tw Cen MT Condensed" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="415.0" layoutY="496.0" mnemonicParsing="false" onMouseClicked="#onClicDetalles" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #F1DE9C;" text="Completar Compra">
+            <Button layoutX="415.0" layoutY="496.0" mnemonicParsing="false" onMouseClicked="#onClicDetalles" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #F1DE9C;" text="Seguir con Compra">
                <font>
                   <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                </font>
