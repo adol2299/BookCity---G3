@@ -42,64 +42,35 @@ import javafx.stage.Window;
 public class MainMenuController implements Initializable {
     
     
-    @FXML
-    private Button login;
-    @FXML
-    private Button registro;
-    @FXML
-    private Button carrito;
-    @FXML
     private TextField textSearchHome;
-    @FXML
-    private Button button_search;
     
     private ControlBd control= new  ControlBd("root", "");
-    @FXML
     private ComboBox<String> menu_filter;
 
     private ObservableList<String> filtrosLibros=FXCollections.observableArrayList(
     "Nombre","Editorial","Autor","ISBN");
 
-    @FXML
     private AnchorPane anchorBusquedaLibros;
     private ArrayList<Libro> arrayLibros = new ArrayList<>();
     private ObservableList<Libro> listaLibros;
-    @FXML
     private TableColumn<Libro, String> columnNombreBusquedaLibro;
-    @FXML
     private TableColumn<Libro, String> columnAutorBusquedaLibro;
-    @FXML
     private TableColumn<Libro, String> columnEditorialBusquedaLibro;
-    @FXML
     private TableColumn<Libro, String> columnIsbnBusquedaLibro;
-    @FXML
     private TableView<Libro> tableBusquedaLibros;
-    @FXML
     private AnchorPane anchorHome;
-    @FXML
     private TextField textSearchBusquedaLibros;
-    @FXML
     private ComboBox<String> menuFilterBusquedaLibros;
-    @FXML
     private AnchorPane anchorBook;
   
-    @FXML
     private TextField tituloDetalleLibro;
-    @FXML
     private TextField autorDetalleLibro;
-    @FXML
     private TextField editorialDetalleLibro;
-    @FXML
     private TextField anoDetalleLibro;
-    @FXML
     private TextField isbnDetalleLibro;
-    @FXML
     private TextField precioDetalleLibro;
-    @FXML
     private Button btnVerMasDetallesLibro;
-    @FXML
     private ComboBox<String> cboxNumeroCopias;
-    @FXML
     private Button btnAgregarAlCarrito;
     
     //Creación Popup Login//
@@ -186,7 +157,6 @@ public class MainMenuController implements Initializable {
     
     //Método  para llamar a popup Login//
     
-    @FXML
         public void loginButtonPushed(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
             
@@ -200,7 +170,6 @@ public class MainMenuController implements Initializable {
         
     //Método  para llamar a popup Registro//   
         
-    @FXML
         public void registroButtonPushed(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
             
@@ -213,7 +182,6 @@ public class MainMenuController implements Initializable {
          }
         
     //Método para llamar a popup Carrito//    
-    @FXML
         public void carritoButtonPushed(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
             
@@ -256,7 +224,6 @@ public class MainMenuController implements Initializable {
         menuFilterBusquedaLibros.setValue("Nombre");
     }
 
-    @FXML
     public void onClicSearchLibroHome(ActionEvent event) {
         anchorBusquedaLibros.toFront();
         btnVerMasDetallesLibro.setDisable(true);
@@ -264,7 +231,6 @@ public class MainMenuController implements Initializable {
         
     }
 
-    @FXML
     public void onClicTxtBusquedaLibro(KeyEvent event) {
         llenarTablaBusquedaLibros(menuFilterBusquedaLibros.getValue(),textSearchBusquedaLibros.getText());
     }
@@ -297,14 +263,12 @@ public class MainMenuController implements Initializable {
         arrayLibros.removeAll(listaLibros);
     }
     
-    @FXML
     public void Detail_Search(MouseEvent event){
         btnVerMasDetallesLibro.setDisable(false);
     }
     
     
 
-    @FXML
     public void onClicVolverBusquedaLibros(ActionEvent event) {
         anchorHome.toFront();
     }
@@ -343,7 +307,6 @@ public class MainMenuController implements Initializable {
         
     }
     
-    @FXML
     public void onClicVolverDetalles(ActionEvent event) {
         anchorBusquedaLibros.toFront();
         btnVerMasDetallesLibro.setDisable(true);

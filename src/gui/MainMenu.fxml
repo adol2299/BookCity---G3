@@ -244,7 +244,7 @@
                                  </opaqueInsets>
                               </TextField>
                               <ComboBox fx:id="menuFilterBusquedaLibros" depthTest="DISABLE" layoutX="558.0" layoutY="66.0" prefHeight="0.0" prefWidth="220.0" promptText="Filtros" styleClass="combo-box" stylesheets="@../Styles/TextStyle.css" AnchorPane.bottomAnchor="-17.0" AnchorPane.leftAnchor="558.0" AnchorPane.rightAnchor="12.0" />
-                              <Button fx:id="carrito" layoutX="648.0" mnemonicParsing="false" onAction="#carritoButtonPushed" prefHeight="57.0" prefWidth="130.0" styleClass="combo-box" stylesheets="@../Styles/TextStyle.css" text="Mi Carrito" textAlignment="RIGHT">
+                              <Button fx:id="carrito" layoutX="648.0" mnemonicParsing="false" onAction="#loginButtonPushed" prefHeight="57.0" prefWidth="130.0" styleClass="combo-box" stylesheets="@../Styles/TextStyle.css" text="Mi Carrito" textAlignment="RIGHT">
                                  <font>
                                     <Font name="Tw Cen MT Condensed" size="20.0" />
                                  </font>
