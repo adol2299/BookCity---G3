@@ -158,3 +158,12 @@ COMMIT;
 
 COMMIT;
 
+select * FROM libro Where nombre like '%u%';
+
+
+select * from Libro;
+select * from usuario;
+
+insert into usuario values ('10000','Admin','pass',1)
+
+

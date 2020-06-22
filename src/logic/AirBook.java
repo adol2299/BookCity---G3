@@ -6,6 +6,7 @@
 package logic;
 
 import Entidad.Factura;
+import Entidad.Libro;
 import Entidad.Usuario;
 import dao.ControlBd;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import javafx.geometry.*;
 public class AirBook extends Application {
     
     public static Usuario usu = new Usuario();
+    public static ArrayList<Libro> cart = new ArrayList<>();
     
     @Override
     public void start(Stage stage) throws IOException {

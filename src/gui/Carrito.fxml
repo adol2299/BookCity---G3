@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorMain" prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.CarritoController">
+<AnchorPane  id="AnchorPane" prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.CarritoController">
    <children>
-      <AnchorPane layoutY="102.0" prefHeight="547.0" prefWidth="600.0" style="-fx-background-color: #F2F2F2;">
+      <AnchorPane fx:id="anchorMain" layoutY="102.0" prefHeight="547.0" prefWidth="600.0" style="-fx-background-color: #F2F2F2;">
          <children>
-            <TableView layoutX="50.0" layoutY="74.0" prefHeight="375.0" prefWidth="500.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../Styles/TextStyle.css">
+            <TableView fx:id="tableCart"  layoutX="50.0" layoutY="74.0" prefHeight="375.0" prefWidth="500.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../Styles/TextStyle.css">
               <columns>
-                <TableColumn prefWidth="125.0" styleClass="column-header-background" text="Nombre" />
-                <TableColumn prefWidth="125.0" styleClass="column-header-background" text="Autor" />
-                  <TableColumn prefWidth="125.0" styleClass="column-header-background" text="Cantidad" />
-                  <TableColumn prefWidth="125.0" styleClass="column-header-background" text="Precio " />
+                <TableColumn fx:id="columnNombre" prefWidth="125.0" styleClass="column-header-background" text="Nombre" />
+                <TableColumn fx:id="columnAutor" prefWidth="125.0" styleClass="column-header-background" text="Autor" />
+                  <TableColumn fx:id="columnCantidad" prefWidth="125.0" styleClass="column-header-background" text="Cantidad" />
+                  <TableColumn fx:id="columnPrecio" prefWidth="125.0" styleClass="column-header-background" text="Precio" />
               </columns>
             </TableView>
             <Label layoutX="259.0" layoutY="30.0" prefHeight="27.0" prefWidth="97.0" text="Tus compras">
@@ -43,7 +43,7 @@
                   <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="50.0" layoutY="31.0" mnemonicParsing="false" onAction="#onCLicVolver" onMouseClicked="#onClicDetalles" prefHeight="23.0" prefWidth="67.0" style="-fx-background-color: #F1DE9C;" text="Volver">
+            <Button fx:id="volverButton" layoutX="50.0" layoutY="31.0" mnemonicParsing="false" onAction="#onClicVolver"  prefHeight="23.0" prefWidth="67.0" style="-fx-background-color: #F1DE9C;" text="Volver">
                <font>
                   <Font name="Tw Cen MT Condensed Extra Bold" size="13.0" />
                </font>

@@ -220,16 +220,16 @@ public class MainMenuController implements Initializable {
         
     //Método para llamar a popup Carrito//    
     @FXML
-        public void carritoButtonPushed(ActionEvent event) throws IOException {
+    public void carritoButtonPushed(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Carrito.fxml"));
-
+        
         Scene scene = new Scene (root);      
         
         Stage stage= new Stage();
         stage.setScene(scene);
 
         popupCarrito(stage);
-         }
+    }
         
         
         
@@ -266,8 +266,7 @@ public class MainMenuController implements Initializable {
     public void onClicSearchLibroHome(ActionEvent event) {
         anchorBusquedaLibros.toFront();
         btnVerMasDetallesLibro.setDisable(true);
-        llenarTablaBusquedaLibros(menu_filter.getValue(),textSearchHome.getText());
-        
+        llenarTablaBusquedaLibros(menu_filter.getValue(),textSearchHome.getText());      
     }
 
     @FXML
@@ -318,8 +317,22 @@ public class MainMenuController implements Initializable {
     @FXML
     public void onClicDetalles(ActionEvent event) {
         llenarDetallesLibro();
-            anchorBook.toFront();
-      
+            anchorBook.toFront();     
+    }
+    
+    @FXML
+    public void onClicAddCart(ActionEvent event) {
+        Libro l = new Libro(); 
+        l.setIsbn(isbnDetalleLibro.getText());
+        l.setNombre(tituloDetalleLibro.getText());
+        l.setEditorial(editorialDetalleLibro.getText());
+        l.setAutor(autorDetalleLibro.getText());
+        l.setAno_publicacion(anoDetalleLibro.getText());
+        l.setPrecio(precioDetalleLibro.getText());
+        l.setExistencia(cboxNumeroCopias.getValue());
+        l.setEstado("Disponible");
+        AirBook.cart.add(l);
+        System.out.println("Libro agregado");
     }
     
 
@@ -341,6 +354,7 @@ public class MainMenuController implements Initializable {
             }
             ObservableList<String> numeroCopias = FXCollections.observableArrayList(ar);
             cboxNumeroCopias.setItems(numeroCopias);
+            cboxNumeroCopias.setDisable(false);
         } else {
             cboxNumeroCopias.setValue("Sin stock");
             cboxNumeroCopias.setDisable(true);
@@ -357,11 +371,6 @@ public class MainMenuController implements Initializable {
     
     public void onClicIrEnvio() {
         anchorEnvio.toFront();
-    }
-
-    @FXML
-    private void onClicDetalles(MouseEvent event) {
-        
     }
 
     @FXML

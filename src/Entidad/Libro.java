@@ -29,7 +29,9 @@ public class Libro {
         this.ano_publicacion = ano_publicacion;
         this.estado = estado;
         this.existencia = existencia;
-    }
+    }   
+
+    public Libro() { }
 
     
     

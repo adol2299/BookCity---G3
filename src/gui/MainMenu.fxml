@@ -78,7 +78,7 @@
                         <TextField fx:id="anoDetalleLibro" editable="false" layoutX="177.0" layoutY="149.0" stylesheets="@../Styles/TextStyle.css" />
                         <TextField fx:id="isbnDetalleLibro" editable="false" layoutX="129.0" layoutY="187.0" stylesheets="@../Styles/TextStyle.css" />
                         <TextField fx:id="precioDetalleLibro" editable="false" layoutX="80.0" layoutY="221.0" stylesheets="@../Styles/TextStyle.css" />
-                        <Button fx:id="btnAgregarAlCarrito" layoutX="548.0" layoutY="425.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="174.0" style="-fx-background-color: #F1DE9C;" text="Agregar al carrito">
+                        <Button fx:id="btnAgregarAlCarrito" layoutX="548.0" onAction="#onClicAddCart" layoutY="425.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="174.0" style="-fx-background-color: #F1DE9C;" text="Agregar al carrito">
                            <font>
                               <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                            </font>
