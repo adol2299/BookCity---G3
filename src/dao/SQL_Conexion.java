@@ -21,7 +21,7 @@ public class SQL_Conexion {
     public SQL_Conexion(String user, String pass) {
      try{
          Class.forName("com.mysql.jdbc.Driver");
-         con = DriverManager.getConnection(url,"root","");
+         con = DriverManager.getConnection(url,"root","MySQL8a_");
          //con = DriverManager.getConnection(url,user,pass);
          if (con!=null){
             System.out.println("Conexión a base de datos Librería...lista");

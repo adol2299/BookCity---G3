@@ -9,12 +9,15 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import static logic.AirBook.usu;
 
 
 
@@ -77,8 +80,31 @@ public class CarritoController {
         this.mainMenuController = mainMenuController;
     }
 
-    
-    public void onClicVolver(ActionEvent event) throws IOException {
+    @FXML
+    private void onClicVolver(ActionEvent event) throws IOException {
         llenarTablaCart();
     }
+    
+    @FXML
+    private void onClicConfirmar(ActionEvent event) throws IOException {
+        if(AirBook.usu.getNombre()==null)
+        {   Alert alert = new Alert(Alert.AlertType.INFORMATION, "Debes iniciar sesión primero", ButtonType.OK);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) 
+               alert.close(); 
+        }
+        else
+        {
+            anchorMain.getScene().getWindow().hide();  
+            mainMenuController.onClicIrEnvio();
+        }
+    }
+    
+    @FXML
+    private void onClicEliminar(ActionEvent event) throws IOException {
+        Libro libroSeleccionado = tableCart.getSelectionModel().getSelectedItem();
+        AirBook.cart.remove(libroSeleccionado);
+        llenarTablaCart();
+    }
+    
 }

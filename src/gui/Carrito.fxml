@@ -33,12 +33,12 @@
                   <Font name="Tw Cen MT Condensed" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="415.0" layoutY="496.0" mnemonicParsing="false" onMouseClicked="#onClicDetalles" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #F1DE9C;" text="Confirmar">
+            <Button layoutX="415.0" layoutY="496.0" mnemonicParsing="false" onAction="#onClicConfirmar" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #F1DE9C;" text="Confirmar">
                <font>
                   <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="272.0" layoutY="496.0" mnemonicParsing="false" onMouseClicked="#onClicDetalles" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #F1DE9C;" text="Eliminar Libro">
+            <Button layoutX="272.0" layoutY="496.0" mnemonicParsing="false" onAction="#onClicEliminar" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #F1DE9C;" text="Eliminar Libro">
                <font>
                   <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                </font>

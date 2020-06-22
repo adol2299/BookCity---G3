@@ -29,6 +29,10 @@ public class Usuario {
     }
 
     public Usuario() {
+        this.administrador = false;
+        this.cedula = null;
+        this.nombre = null;
+        this.contrasena = null;
     }
 
     public String getCedula() {
