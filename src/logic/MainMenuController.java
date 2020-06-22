@@ -27,6 +27,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,6 +43,8 @@ import javafx.stage.Window;
 
 public class MainMenuController implements Initializable {
     
+    
+    private CarritoController cart;
     
     @FXML
     private TextField textSearchHome;
@@ -182,7 +185,8 @@ public class MainMenuController implements Initializable {
             FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("gui/Carrito.fxml"));
         Parent root = (Parent) loader.load();
         CarritoController controller =  loader.getController();
-        controller.setMainMenuController(this);    
+        controller.setMainMenuController(this); 
+        controller.llenarTablaCart();
 
         Scene scene = new Scene (root);      
         
@@ -322,21 +326,32 @@ public class MainMenuController implements Initializable {
     
     @FXML
     public void onClicAddCart(ActionEvent event) {
-        Libro l = new Libro(); 
-        l.setIsbn(isbnDetalleLibro.getText());
-        l.setNombre(tituloDetalleLibro.getText());
-        l.setEditorial(editorialDetalleLibro.getText());
-        l.setAutor(autorDetalleLibro.getText());
-        l.setAno_publicacion(anoDetalleLibro.getText());
-        l.setPrecio(precioDetalleLibro.getText());
-        l.setExistencia(cboxNumeroCopias.getValue());
-        l.setEstado("Disponible");
-        AirBook.cart.add(l);
-        System.out.println("Libro agregado");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, addToCart(), ButtonType.OK);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) 
+               alert.close(); 
+    }
+    
+    public String addToCart()
+    {   try
+        {   Libro l = new Libro(); 
+            l.setIsbn(isbnDetalleLibro.getText());
+            l.setNombre(tituloDetalleLibro.getText());
+            l.setEditorial(editorialDetalleLibro.getText());
+            l.setAutor(autorDetalleLibro.getText());
+            l.setAno_publicacion(anoDetalleLibro.getText());
+            l.setPrecio(precioDetalleLibro.getText());
+            l.setExistencia(cboxNumeroCopias.getValue());
+            l.setEstado("Disponible");
+            AirBook.cart.add(l);
+            return "Libro agregado";
+        }
+        catch(Exception ex)
+        {    return "Error al agregar el libro";  } 
     }
     
 
-        public void llenarDetallesLibro() {
+    public void llenarDetallesLibro() {
         Libro libroSeleccionado = tableBusquedaLibros.getSelectionModel().getSelectedItem();
         tituloDetalleLibro.setText(libroSeleccionado.getNombre());
         autorDetalleLibro.setText(libroSeleccionado.getAutor());

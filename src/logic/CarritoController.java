@@ -2,6 +2,7 @@ package logic;
 
 import Entidad.Libro;
 import java.io.IOException;
+import java.util.Iterator;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -24,6 +26,8 @@ import static logic.AirBook.usu;
 public class CarritoController {
     private Stage stage;
     @FXML
+    private TextField subtotal;
+    @FXML
     private TableView<Libro> tableCart;
     @FXML
     private TableColumn<Libro, String> columnNombre;
@@ -33,10 +37,9 @@ public class CarritoController {
     private TableColumn<Libro, String> columnPrecio;
     @FXML
     private TableColumn<Libro, String> columnCantidad;
-    
-    private ObservableList<Libro> listaLibros;
     @FXML
     private AnchorPane anchorMain;
+    private ObservableList<Libro> listaLibros;
     
     private MainMenuController mainMenuController;
 
@@ -53,6 +56,7 @@ public class CarritoController {
         columnCantidad.setCellValueFactory(new PropertyValueFactory<Libro, String>("existencia"));
         columnPrecio.setCellValueFactory(new PropertyValueFactory<Libro, String>("Precio"));
         tableCart.setItems(listaLibros);
+        subtotal.setText(""+calcularTotal());
         listaLibros.removeAll();
     }
     
@@ -82,7 +86,7 @@ public class CarritoController {
 
     @FXML
     private void onClicVolver(ActionEvent event) throws IOException {
-        llenarTablaCart();
+         anchorMain.getScene().getWindow().hide();
     }
     
     @FXML
@@ -98,6 +102,18 @@ public class CarritoController {
             anchorMain.getScene().getWindow().hide();  
             mainMenuController.onClicIrEnvio();
         }
+    }
+    
+    private int calcularTotal()
+    {   int total = 0;
+        Iterator it = AirBook.cart.iterator();
+        while(it.hasNext())
+        {   Libro l = (Libro) it.next();
+            int cant = Integer.parseInt(l.getExistencia());
+            int value = Integer.parseInt(l.getPrecio());
+            total += cant*value;
+        }
+        return total;
     }
     
     @FXML
