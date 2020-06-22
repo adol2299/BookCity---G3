@@ -326,7 +326,7 @@
                   <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="546.0" layoutY="637.0" mnemonicParsing="false" onMouseClicked="#onClicDetalles" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Volver">
+            <Button layoutX="546.0" layoutY="637.0" mnemonicParsing="false" onAction="#volverABusquedaLibros" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Volver">
                <font>
                   <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                </font>

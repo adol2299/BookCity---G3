@@ -76,7 +76,7 @@ public class MainMenuController implements Initializable {
     @FXML
     private AnchorPane anchorBook;
     @FXML
-     static private AnchorPane anchorEnvio;
+    private AnchorPane anchorEnvio;
   
     @FXML
     private TextField tituloDetalleLibro;
@@ -123,9 +123,8 @@ public class MainMenuController implements Initializable {
         popup.hide();
       }
     });
-
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Login.fxml"));         
-            
+    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Login.fxml"));         
+   
         Scene scene = new Scene (root);      
         
         stage.setScene(scene);
@@ -179,8 +178,12 @@ public class MainMenuController implements Initializable {
       }
     });
 
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Carrito.fxml"));         
-            
+//        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Carrito.fxml"));         
+            FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("gui/Carrito.fxml"));
+        Parent root = (Parent) loader.load();
+        CarritoController controller =  loader.getController();
+        controller.setMainMenuController(this);    
+
         Scene scene = new Scene (root);      
         
         stage.setScene(scene);
@@ -216,9 +219,10 @@ public class MainMenuController implements Initializable {
          }
         
     //Método para llamar a popup Carrito//    
-        public void carritoButtonPushed(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
-            
+    @FXML
+        public void carritoButtonPushed(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Carrito.fxml"));
+
         Scene scene = new Scene (root);      
         
         Stage stage= new Stage();
@@ -328,7 +332,7 @@ public class MainMenuController implements Initializable {
         isbnDetalleLibro.setText(libroSeleccionado.getIsbn());
         precioDetalleLibro.setText(libroSeleccionado.getPrecio()); 
         ArrayList<String> ar = new ArrayList<>();
-        if (Integer.parseInt(libroSeleccionado.getExistencia()) != 0) {
+        if (Integer.parseInt(libroSeleccionado.getExistencia()) > 0) {
             btnAgregarAlCarrito.setDisable(false);
             cboxNumeroCopias.setValue("1");
             for (int i = 0; i < Integer.parseInt(libroSeleccionado.getExistencia()); i++) {
@@ -351,8 +355,17 @@ public class MainMenuController implements Initializable {
         btnVerMasDetallesLibro.setDisable(true);
     }
     
-    @FXML
-    static public void onClicIrEnvio(ActionEvent event) {
+    public void onClicIrEnvio() {
         anchorEnvio.toFront();
+    }
+
+    @FXML
+    private void onClicDetalles(MouseEvent event) {
+        
+    }
+
+    @FXML
+    private void volverABusquedaLibros(ActionEvent event) {
+        anchorBusquedaLibros.toFront();
     }
 }
