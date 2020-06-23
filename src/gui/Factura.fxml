@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="anchorMain" layoutY="102.0" prefHeight="547.0" prefWidth="600.0" style="-fx-background-color: #F2F2F2;">
+         <children>
+            <TextField layoutX="15.0" layoutY="11.0" promptText="Dirección" stylesheets="@../Styles/TextStyle.css" />
+            <TextField layoutX="15.0" layoutY="45.0" promptText="Ciudad" stylesheets="@../Styles/TextStyle.css" />
+            <TextField layoutX="15.0" layoutY="81.0" promptText="Teléfono" stylesheets="@../Styles/TextStyle.css" />
+            <Label layoutX="15.0" layoutY="126.0" text="Facturar a:">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="19.0" />
+               </font>
+            </Label>
+            <TableView layoutX="15.0" layoutY="333.0" prefHeight="200.0" prefWidth="574.0" stylesheets="@../Styles/TextStyle.css">
+              <columns>
+                <TableColumn prefWidth="250.0" styleClass="column-header-background" text="Descripción" />
+                <TableColumn prefWidth="75.0" styleClass="column-header-background" text="Cantidad" />
+                  <TableColumn prefWidth="125.0" styleClass="column-header-background" text="Precio Unitario" />
+                  <TableColumn prefWidth="125.0" styleClass="column-header-background" text="Precio Total" />
+              </columns>
+            </TableView>
+            <TextField layoutX="15.0" layoutY="155.0" promptText="Nombre Cliente" stylesheets="@../Styles/TextStyle.css" />
+            <TextField layoutX="15.0" layoutY="193.0" promptText="Dirección Cliente" stylesheets="@../Styles/TextStyle.css" />
+            <TextField layoutX="15.0" layoutY="235.0" promptText="Telefono Cliente" stylesheets="@../Styles/TextStyle.css" />
+            <TextField layoutX="15.0" layoutY="274.0" promptText="E-Mail Cliente" stylesheets="@../Styles/TextStyle.css" />
+            <Label layoutX="340.0" layoutY="25.0" prefHeight="22.0" prefWidth="236.0" style="-fx-background-color: #F1DE9C;" text="    Factura #                               Fecha">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="19.0" />
+               </font>
+            </Label>
+            <TextField layoutX="340.0" layoutY="58.0" prefHeight="25.0" prefWidth="88.0" promptText="Num Factura" stylesheets="@../Styles/TextStyle.css" />
+            <TextField layoutX="488.0" layoutY="58.0" prefHeight="25.0" prefWidth="88.0" promptText="Fecha" stylesheets="@../Styles/TextStyle.css" />
+            <Label layoutX="340.0" layoutY="126.0" prefHeight="22.0" prefWidth="236.0" style="-fx-background-color: #F1DE9C;" text="  ID Cliente                      Tipo de Entrega">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="19.0" />
+               </font>
+            </Label>
+            <TextField layoutX="340.0" layoutY="155.0" prefHeight="25.0" prefWidth="88.0" promptText="Id Cliente" stylesheets="@../Styles/TextStyle.css" />
+            <TextField layoutX="473.0" layoutY="155.0" prefHeight="25.0" prefWidth="103.0" promptText="Tipo de Entrega" stylesheets="@../Styles/TextStyle.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="102.0" prefWidth="600.0" style="-fx-background-color: #D8754E;">
+         <children>
+            <ImageView fitHeight="126.0" fitWidth="97.0" layoutX="42.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../airbook/images/LogosLogo%20Negative-100.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="216.0" layoutY="42.0" text="Facturación Electrónica" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
