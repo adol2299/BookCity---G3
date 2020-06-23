@@ -38,23 +38,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Window;
 
-
 public class MainMenuController implements Initializable {
-    
-    
+
     private CarritoController cart;
-    
+
     @FXML
     private TextField textSearchHome;
-    
-    private ControlBd control= new  ControlBd("root", "");
+
+    private ControlBd control = new ControlBd("root", "");
     @FXML
     private ComboBox<String> menu_filter;
 
-    private ObservableList<String> filtrosLibros=FXCollections.observableArrayList(
-    "Nombre","Editorial","Autor","ISBN");
+    private ObservableList<String> filtrosLibros = FXCollections.observableArrayList(
+            "Nombre", "Editorial", "Autor", "ISBN");
 
     @FXML
     private AnchorPane anchorBusquedaLibros;
@@ -80,7 +79,7 @@ public class MainMenuController implements Initializable {
     private AnchorPane anchorBook;
     @FXML
     private AnchorPane anchorEnvio;
-  
+
     @FXML
     private TextField tituloDetalleLibro;
     @FXML
@@ -107,145 +106,144 @@ public class MainMenuController implements Initializable {
     private Button button_search;
     @FXML
     private Button carrito;
-    
+    private CarritoController carritoController;
+
     //Creación Popup Login//
+    public void popupLogin(final Stage stage) throws IOException {
+        final Popup popup = new Popup();
 
-    public void popupLogin(final Stage stage) throws IOException {         
-    final Popup popup = new Popup(); 
-  
-    Button show = new Button("Show");
-    show.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent event) {
-        popup.show(stage);
-      }
-    });
+        Button show = new Button("Show");
+        show.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.show(stage);
+            }
+        });
 
-    Button hide = new Button("Hide");
-    hide.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent event) {
-        popup.hide();
-      }
-    });
-    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Login.fxml"));         
-   
-        Scene scene = new Scene (root);      
-        
+        Button hide = new Button("Hide");
+        hide.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.hide();
+            }
+        });
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Login.fxml"));
+
+        Scene scene = new Scene(root);
+
         stage.setScene(scene);
         stage.show();
     }
-    
+
     //Creación popup Registro//
-    
-   public void popupRegistro(final Stage stage) throws IOException {         
-    final Popup popup = new Popup(); 
-  
-    Button show = new Button("Show");
-    show.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent event) {
-        popup.show(stage);
-      }
-    });
+    public void popupRegistro(final Stage stage) throws IOException {
+        final Popup popup = new Popup();
 
-    Button hide = new Button("Hide");
-    hide.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent event) {
-        popup.hide();
-      }
-    });
+        Button show = new Button("Show");
+        show.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.show(stage);
+            }
+        });
 
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Registro.fxml"));         
-            
-        Scene scene = new Scene (root);      
-        
+        Button hide = new Button("Hide");
+        hide.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.hide();
+            }
+        });
+
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Registro.fxml"));
+
+        Scene scene = new Scene(root);
+
         stage.setScene(scene);
         stage.show();
     }
-    
-   
-   //Creación Popup Carrito//
-   
-    public void popupCarrito(final Stage stage) throws IOException {         
-    final Popup popup = new Popup(); 
-  
-    Button show = new Button("Show");
-    show.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent event) {
-        popup.show(stage);
-      }
-    });
 
-    Button hide = new Button("Hide");
-    hide.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent event) {
-        popup.hide();
-      }
-    });
+    //Creación Popup Carrito//
+    public void popupCarrito(final Stage stage) throws IOException {
+        final Popup popup = new Popup();
 
-//        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Carrito.fxml"));         
-            FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("gui/Carrito.fxml"));
+        Button show = new Button("Show");
+        show.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.show(stage);
+            }
+        });
+
+        Button hide = new Button("Hide");
+        hide.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.hide();
+            }
+        });
+
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("gui/Carrito.fxml"));
         Parent root = (Parent) loader.load();
-        CarritoController controller =  loader.getController();
-        controller.setMainMenuController(this); 
+        CarritoController controller = loader.getController();
+        this.carritoController=controller;
+        controller.setMainMenuController(this);
         controller.llenarTablaCart();
 
-        Scene scene = new Scene (root);      
-        
+        Scene scene = new Scene(root);
+
         stage.setScene(scene);
         stage.show();
     }
-    
+
     //Método  para llamar a popup Login//
-    
     @FXML
-        public void loginButtonPushed(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
-            
-        Scene scene = new Scene (root);      
-        
-        Stage stage= new Stage();
+    public void loginButtonPushed(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));
+
+        Scene scene = new Scene(root);
+
+        Stage stage = new Stage();
         stage.setScene(scene);
 
         popupLogin(stage);
-         }
-        
+    }
+
     //Método  para llamar a popup Registro//   
-        
     @FXML
-        public void registroButtonPushed(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
-            
-        Scene scene = new Scene (root);      
-        
-        Stage stage= new Stage();
+    public void registroButtonPushed(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));
+
+        Scene scene = new Scene(root);
+
+        Stage stage = new Stage();
         stage.setScene(scene);
 
         popupRegistro(stage);
-         }
-        
+    }
+
     //Método para llamar a popup Carrito//    
     @FXML
     public void carritoButtonPushed(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Carrito.fxml"));
-        
-        Scene scene = new Scene (root);      
-        
-        Stage stage= new Stage();
+
+        Scene scene = new Scene(root);
+
+        Stage stage = new Stage();
         stage.setScene(scene);
 
         popupCarrito(stage);
     }
-        
-        
-        
-     
-       
-    public Object[][] searchByIsbn(){
-        Object[][] tabla=control.getLibrosBy("isbn",textSearchHome.getText());
-        int cont=1;
-        for(Object[] fila:tabla){
-            System.out.print("Libro #"+(cont++)+"//   ");
-            for(Object dato: fila){
-                if(dato!=null) System.out.print("//  "+dato+"// ");
+
+    public Object[][] searchByIsbn() {
+        Object[][] tabla = control.getLibrosBy("isbn", textSearchHome.getText());
+        int cont = 1;
+        for (Object[] fila : tabla) {
+            System.out.print("Libro #" + (cont++) + "//   ");
+            for (Object dato : fila) {
+                if (dato != null) {
+                    System.out.print("//  " + dato + "// ");
+                }
             }
             System.out.println("");
         }
@@ -256,8 +254,7 @@ public class MainMenuController implements Initializable {
         return menu_filter.getValue();
     }
 
-   
-      @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         anchorHome.toFront();
         menu_filter.setItems(filtrosLibros);
@@ -270,30 +267,30 @@ public class MainMenuController implements Initializable {
     public void onClicSearchLibroHome(ActionEvent event) {
         anchorBusquedaLibros.toFront();
         btnVerMasDetallesLibro.setDisable(true);
-        llenarTablaBusquedaLibros(menu_filter.getValue(),textSearchHome.getText());      
+        llenarTablaBusquedaLibros(menu_filter.getValue(), textSearchHome.getText());
     }
 
     @FXML
     public void onClicTxtBusquedaLibro(KeyEvent event) {
-        llenarTablaBusquedaLibros(menuFilterBusquedaLibros.getValue(),textSearchBusquedaLibros.getText());
+        llenarTablaBusquedaLibros(menuFilterBusquedaLibros.getValue(), textSearchBusquedaLibros.getText());
     }
 
-    public void llenarTablaBusquedaLibros(String filtro,String busqueda) {
-        Object[][] libros=control.getLibrosBy(filtro,busqueda);
+    public void llenarTablaBusquedaLibros(String filtro, String busqueda) {
+        Object[][] libros = control.getLibrosBy(filtro, busqueda);
         for (Object[] currentLibro : libros) {
-            boolean flag=false;
+            boolean flag = false;
             for (Object object : currentLibro) {
-                if(object==null){
-                    flag=true;
+                if (object == null) {
+                    flag = true;
                     break;
                 }
             }
-            if(flag==false){
-            Libro libro=new Libro(currentLibro[0].toString(), currentLibro[1].toString(),
-                    currentLibro[2].toString(), currentLibro[3].toString(),
-                    currentLibro[4].toString(), currentLibro[5].toString(),
-                    currentLibro[6].toString(), currentLibro[7].toString());
-            arrayLibros.add(libro);
+            if (flag == false) {
+                Libro libro = new Libro(currentLibro[0].toString(), currentLibro[1].toString(),
+                        currentLibro[2].toString(), currentLibro[3].toString(),
+                        currentLibro[4].toString(), currentLibro[5].toString(),
+                        currentLibro[6].toString(), currentLibro[7].toString());
+                arrayLibros.add(libro);
             }
         }
         listaLibros = FXCollections.observableArrayList(arrayLibros);
@@ -305,91 +302,75 @@ public class MainMenuController implements Initializable {
         listaLibros.removeAll();
         arrayLibros.removeAll(listaLibros);
     }
-    
+
     @FXML
-    public void Detail_Search(MouseEvent event){
+    public void Detail_Search(MouseEvent event) {
         btnVerMasDetallesLibro.setDisable(false);
     }
-    
-    
 
     @FXML
     public void onClicVolverBusquedaLibros(ActionEvent event) {
         anchorHome.toFront();
     }
-    
+
     @FXML
-    public void onClicDetalles(ActionEvent event) {
-        llenarDetallesLibro();
-            anchorBook.toFront();     
+    public void onClicDetalles(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("gui/DetalleLibro.fxml"));
+                Parent root=loader.load();
+        DetalleLibroController controller= loader.getController();
+        controller.setLibroSeleccionado(tableBusquedaLibros.getSelectionModel().getSelectedItem());
+        controller.setMainMenuController(this);
+        controller.llenarDetallesLibro();
+        Stage stage = new Stage();
+        controller.setStage(stage);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
-    
-    @FXML
-    public void onClicAddCart(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, addToCart(), ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) 
-               alert.close(); 
-    }
-    
-    public String addToCart()
-    {   try
-        {   Libro l = new Libro(); 
-            l.setIsbn(isbnDetalleLibro.getText());
-            l.setNombre(tituloDetalleLibro.getText());
-            l.setEditorial(editorialDetalleLibro.getText());
-            l.setAutor(autorDetalleLibro.getText());
-            l.setAno_publicacion(anoDetalleLibro.getText());
-            l.setPrecio(precioDetalleLibro.getText());
-            l.setExistencia(cboxNumeroCopias.getValue());
-            l.setEstado("Disponible");
-            AirBook.cart.add(l);
-            return "Libro agregado";
-        }
-        catch(Exception ex)
-        {    return "Error al agregar el libro";  } 
-    }
+
+ 
     
 
-    public void llenarDetallesLibro() {
-        Libro libroSeleccionado = tableBusquedaLibros.getSelectionModel().getSelectedItem();
-        tituloDetalleLibro.setText(libroSeleccionado.getNombre());
-        autorDetalleLibro.setText(libroSeleccionado.getAutor());
-        editorialDetalleLibro.setText(libroSeleccionado.getEditorial());
-        anoDetalleLibro.setText(libroSeleccionado.getAno_publicacion());
-        isbnDetalleLibro.setText(libroSeleccionado.getIsbn());
-        precioDetalleLibro.setText(libroSeleccionado.getPrecio()); 
-        ArrayList<String> ar = new ArrayList<>();
-        if (Integer.parseInt(libroSeleccionado.getExistencia()) > 0) {
-            btnAgregarAlCarrito.setDisable(false);
-            cboxNumeroCopias.setValue("1");
-            for (int i = 0; i < Integer.parseInt(libroSeleccionado.getExistencia()); i++) {
-                int j = i + 1;
-                ar.add(String.valueOf(j));
-            }
-            ObservableList<String> numeroCopias = FXCollections.observableArrayList(ar);
-            cboxNumeroCopias.setItems(numeroCopias);
-            cboxNumeroCopias.setDisable(false);
-        } else {
-            cboxNumeroCopias.setValue("Sin stock");
-            cboxNumeroCopias.setDisable(true);
-            btnAgregarAlCarrito.setDisable(true);
-        }
-        
-    }
-    
     @FXML
     public void onClicVolverDetalles(ActionEvent event) {
         anchorBusquedaLibros.toFront();
         btnVerMasDetallesLibro.setDisable(true);
     }
-    
+
     public void onClicIrEnvio() {
         anchorEnvio.toFront();
     }
 
     @FXML
-    private void volverABusquedaLibros(ActionEvent event) {
+    public void volverABusquedaLibros(ActionEvent event) {
         anchorBusquedaLibros.toFront();
+    }
+
+    public void popupDetalleCarrito(Stage stage) throws IOException {
+        final Popup popup = new Popup();
+
+        Button show = new Button("Show");
+        show.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.show(stage);
+            }
+        });
+
+        Button hide = new Button("Hide");
+        hide.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.hide();
+            }
+        });
+        DetalleLibroController controller= new DetalleLibroController(
+                tableBusquedaLibros.getSelectionModel().getSelectedItem());
+
+    }
+
+    public void ActualizarTablaCarrito() {
+        if(this.carritoController!=null){
+            carritoController.llenarTablaCart();
+        }
     }
 }
