@@ -8,17 +8,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="482.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.LoginController">
    <children>
-      <AnchorPane layoutY="475.0" prefHeight="75.0" prefWidth="500.0" style="-fx-background-color: #F3E7C3;">
-         <children>
-            <Button layoutX="109.0" layoutY="22.0" mnemonicParsing="false" style="-fx-background-color: #F3E7C3;" text="¿No estás registrado? Regístrate aquí" textFill="#8d9096">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
       <AnchorPane layoutY="96.0" prefHeight="379.0" prefWidth="500.0" style="-fx-background-color: #F2F2F2;">
          <children>
             <TextField fx:id="TextCedula" layoutX="96.0" layoutY="114.0" prefHeight="34.0" prefWidth="309.0" promptText="Ingrese cédula" styleClass="text-field" stylesheets="@../Styles/TextStyle.css" />

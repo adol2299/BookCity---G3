@@ -1,6 +1,7 @@
 package logic;
 
 import Entidad.Libro;
+import dao.ControlBd;
 import java.io.IOException;
 import java.util.Iterator;
 import javafx.beans.property.ObjectProperty;
@@ -42,7 +43,7 @@ public class CarritoController {
     private ObservableList<Libro> listaLibros;
     
     private MainMenuController mainMenuController;
-
+    
     @FXML
     private void onClicDetalles(MouseEvent event) {
         anchorMain.getScene().getWindow().hide();  
@@ -89,22 +90,42 @@ public class CarritoController {
     private void onClicVolver(ActionEvent event) throws IOException {
          anchorMain.getScene().getWindow().hide();
     }
-    
+
     @FXML
     private void onClicConfirmar(ActionEvent event) throws IOException {
-        if(AirBook.usu.getNombre()==null)
-        {   Alert alert = new Alert(Alert.AlertType.INFORMATION, "Debes iniciar sesión primero", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) 
-               alert.close(); 
-        }
-        else
-        {
-            mainMenuController.setTxtValorTotal(subtotal.getText());
-            anchorMain.getScene().getWindow().hide();  
-            mainMenuController.onClicIrEnvio();
-        }
+        if (validarStockDisponible()) {
+            if (AirBook.usu.getNombre() == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Debes iniciar sesión primero", ButtonType.OK);
+                alert.showAndWait();
+                if (alert.getResult() == ButtonType.OK) {
+                    alert.close();
+                }
+            } else {
+                mainMenuController.setTxtValorTotal(subtotal.getText());
+                anchorMain.getScene().getWindow().hide();
+                mainMenuController.onClicIrEnvio();
+            }
+        } 
+        
     }
+    
+    
+    public boolean validarStockDisponible() {
+        for (Libro libro : AirBook.cart) {
+            ControlBd control=mainMenuController.getControl();
+            int librosRestantes=control.getExistenciaLibro(libro)-Integer.parseInt(libro.getExistencia());
+            if(librosRestantes<0){
+                String salida="Disculpa, nos hacen faltan "+Math.abs(librosRestantes)+
+                        " ejemplares de "+libro.getNombre();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, salida, ButtonType.OK);
+                alert.setHeaderText("");
+                alert.showAndWait();
+                return false;
+            }
+        }
+        return true;
+    }
+    
     
     private int calcularTotal()
     {   int total = 0;

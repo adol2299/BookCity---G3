@@ -52,7 +52,6 @@ import javafx.stage.Window;
 
 public class MainMenuController implements Initializable {
 
-
     @FXML
     private TextField textSearchHome;
 
@@ -89,10 +88,6 @@ public class MainMenuController implements Initializable {
     @FXML
     private Button btnVerMasDetallesLibro;
     @FXML
-    private Button login;
-    @FXML
-    private Button registro;
-    @FXML
     private Button button_search;
     @FXML
     private Button carrito;
@@ -107,11 +102,17 @@ public class MainMenuController implements Initializable {
     private CheckBox cBoxPremium;
     @FXML
     private CheckBox cBoxDia;
-    private int lastIdDomicilio,lastIdFactura;
+    private int lastIdDomicilio, lastIdFactura;
     @FXML
     private TextField txtValorTotal;
     private float valorDomicilio;
     private String tipoEntrega;
+    @FXML
+    private Button btnCerrarSesion;
+    @FXML
+    private Button btnLogin;
+    @FXML
+    private Button btnRegistro;
 
     //Creación Popup Login//
     public void popupLogin(final Stage stage) throws IOException {
@@ -132,8 +133,10 @@ public class MainMenuController implements Initializable {
                 popup.hide();
             }
         });
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Login.fxml"));
-
+        FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("gui/Login.fxml"));
+        Parent root = loader.load();
+        LoginController controller=loader.getController();
+        controller.setMainMenuController(this);
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
@@ -191,7 +194,7 @@ public class MainMenuController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("gui/Carrito.fxml"));
         Parent root = (Parent) loader.load();
         CarritoController controller = loader.getController();
-        this.carritoController=controller;
+        this.carritoController = controller;
         controller.setMainMenuController(this);
         controller.llenarTablaCart();
 
@@ -321,8 +324,8 @@ public class MainMenuController implements Initializable {
     @FXML
     public void onClicDetalles(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("gui/DetalleLibro.fxml"));
-                Parent root=loader.load();
-        DetalleLibroController controller= loader.getController();
+        Parent root = loader.load();
+        DetalleLibroController controller = loader.getController();
         controller.setLibroSeleccionado(tableBusquedaLibros.getSelectionModel().getSelectedItem());
         controller.setMainMenuController(this);
         controller.llenarDetallesLibro();
@@ -331,9 +334,6 @@ public class MainMenuController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
- 
-    
 
     public void onClicVolverDetalles(ActionEvent event) {
         anchorBusquedaLibros.toFront();
@@ -367,7 +367,7 @@ public class MainMenuController implements Initializable {
                 popup.hide();
             }
         });
-        DetalleLibroController controller= new DetalleLibroController(
+        DetalleLibroController controller = new DetalleLibroController(
                 tableBusquedaLibros.getSelectionModel().getSelectedItem());
 
     }
@@ -387,19 +387,19 @@ public class MainMenuController implements Initializable {
             if (alert.getResult() == ButtonType.OK) {
                 System.out.println("Mostrar Resumen compra");
             }
-        }else{
-            Alert alert=new Alert(Alert.AlertType.ERROR, "Favor llene todos los datos", ButtonType.OK);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Favor llene todos los datos", ButtonType.OK);
             alert.showAndWait();
         }
     }
-    
-    public String finalizarCompra(){
-        try{
+
+    public String finalizarCompra() {
+        try {
             insertarDomicilio();
-        insertarFactura();
-        insertarFactura_has_libro();
+            insertarFactura();
+            insertarFactura_has_libro();
             return "Compra Exitosa";
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.print(e);
             return "Fallo al generar la compra";
         }
@@ -407,7 +407,7 @@ public class MainMenuController implements Initializable {
 
     public void insertarFactura_has_libro() {
         for (Libro libro : AirBook.cart) {
-            Factura_has_libro f= new Factura_has_libro(lastIdFactura,libro.getIsbn(),Integer.parseInt(libro.getExistencia()));
+            Factura_has_libro f = new Factura_has_libro(lastIdFactura, libro.getIsbn(), Integer.parseInt(libro.getExistencia()));
             control.setFactura_has_Libro(f);
         }
     }
@@ -415,47 +415,47 @@ public class MainMenuController implements Initializable {
     public void insertarFactura() {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calobj = Calendar.getInstance();
-        Factura factura = new Factura(df.format(calobj.getTime()), 
+        Factura factura = new Factura(df.format(calobj.getTime()),
                 carritoController.getSubtotal().getText(),
                 lastIdDomicilio, "8516548", AirBook.usu.getCedula());
-        lastIdFactura=control.setFactura(factura);
+        lastIdFactura = control.setFactura(factura);
     }
 
     public void insertarDomicilio() {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calobj = Calendar.getInstance();
-       
-        
-        Domicilio domicilio= new Domicilio(txtDireccionEnvio.getText(), df.format(calobj.getTime()),
+
+        Domicilio domicilio = new Domicilio(txtDireccionEnvio.getText(), df.format(calobj.getTime()),
                 valorDomicilio, txtDatosAdicionales.getText(), tipoEntrega);
-        lastIdDomicilio=control.setDomicilio(domicilio);
+        lastIdDomicilio = control.setDomicilio(domicilio);
     }
-    
-     @FXML
+
+    @FXML
     private void handleOpxionesEntrega(ActionEvent event) {
-        if(event.getSource().equals(cboxNormal)){
-            valorDomicilio=5000;
-            tipoEntrega="normal";
+        if (event.getSource().equals(cboxNormal)) {
+            valorDomicilio = 5000;
+            tipoEntrega = "normal";
             cBoxPremium.setSelected(false);
             cBoxDia.setSelected(false);
             actualizarValorTotal();
-        }else if(event.getSource().equals(cBoxPremium)){
-            valorDomicilio=10000;
-            tipoEntrega="premium";
+        } else if (event.getSource().equals(cBoxPremium)) {
+            valorDomicilio = 10000;
+            tipoEntrega = "premium";
             cboxNormal.setSelected(false);
             cBoxDia.setSelected(false);
             actualizarValorTotal();
-        }else{
-            valorDomicilio=15000;
-            tipoEntrega="mismo dia";
+        } else {
+            valorDomicilio = 15000;
+            tipoEntrega = "mismo dia";
             cboxNormal.setSelected(false);
             cBoxPremium.setSelected(false);
             actualizarValorTotal();
         }
     }
 
+
     public void actualizarValorTotal() {
-        setTxtValorTotal(String.valueOf(Integer.parseInt(carritoController.getSubtotal().getText())+valorDomicilio));
+        setTxtValorTotal(String.valueOf(Integer.parseInt(carritoController.getSubtotal().getText()) + valorDomicilio));
     }
 
     public TextField getTxtValorTotal() {
@@ -474,8 +474,37 @@ public class MainMenuController implements Initializable {
         this.control = control;
     }
 
+    @FXML
+    public void onClicCerrarSesion(ActionEvent event) {
+        AirBook.usu=null;
+        btnCerrarSesion.setVisible(false);
+        btnLogin.setVisible(true);
+        btnRegistro.setVisible(true);
+    }
+
+    public Button getBtnCerrarSesion() {
+        return btnCerrarSesion;
+    }
+
+    public void setBtnCerrarSesion(Button btnCerrarSesion) {
+        this.btnCerrarSesion = btnCerrarSesion;
+    }
+
+    public Button getBtnLogin() {
+        return btnLogin;
+    }
+
+    public void setBtnLogin(Button btnLogin) {
+        this.btnLogin = btnLogin;
+    }
+
+    public Button getBtnRegistro() {
+        return btnRegistro;
+    }
+
+    public void setBtnRegistro(Button btnRegistro) {
+        this.btnRegistro = btnRegistro;
+    }
+
     
-   
-    
-   
 }

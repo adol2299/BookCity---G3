@@ -17,118 +17,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.MainMenuController">
    <children>
-      <AnchorPane fx:id="anchorHome" layoutX="-2.0" style="-fx-background-color: #F2F2F2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <AnchorPane layoutX="2.0" prefHeight="108.0" prefWidth="850.0" style="-fx-background-color: #F2F2F2;">
-               <children>
-                  <Button fx:id="login" layoutX="710.0" layoutY="10.0" mnemonicParsing="false" onAction="#loginButtonPushed" prefHeight="91.0" prefWidth="126.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../Styles/TextStyle.css" text="Iniciar Sesión" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="Tw Cen MT" size="17.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="registro" layoutX="596.0" layoutY="10.0" mnemonicParsing="false" onAction="#registroButtonPushed" prefHeight="91.0" prefWidth="114.0" style="-fx-background-color: #F2F2F2;" text="Registrarse" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="Tw Cen MT" size="17.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Button>
-                  <ImageView fitHeight="99.0" fitWidth="102.0" layoutX="13.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../airbook/images/LogosLogo-100.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="264.0" fitWidth="853.0" layoutX="-2.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../airbook/images/BannerArtboard%201-100.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="72.0" layoutY="275.0" prefHeight="181.0" prefWidth="710.0" style="-fx-background-color: #D8754E;">
-               <children>
-                  <AnchorPane layoutX="32.0" layoutY="20.0" prefHeight="110.0" prefWidth="650.0" style="-fx-background-color: #ffffff;">
-                     <children>
-                        <AnchorPane prefHeight="142.0" prefWidth="650.0" style="-fx-background-color: #F2F2F2;">
-                           <children>
-                              <TextField fx:id="textSearchHome" layoutX="34.0" layoutY="70.0" prefHeight="45.0" prefWidth="346.0" promptText="Búsqueda Rápida" styleClass="text-field" stylesheets="@../Styles/TextStyle.css">
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </TextField>
-                              <Button fx:id="button_search" layoutX="524.0" layoutY="78.0" mnemonicParsing="false" onAction="#onClicSearchLibroHome" prefHeight="38.0" prefWidth="109.0" style="-fx-background-color: #F1DE9C;" text="Buscar">
-                                 <font>
-                                    <Font name="Tw Cen MT Condensed Bold" size="16.0" />
-                                 </font>
-                              </Button>
-                              <ComboBox fx:id="menu_filter" depthTest="DISABLE" layoutX="388.0" layoutY="69.0" prefHeight="45.0" prefWidth="114.0" promptText="Filtros" styleClass="combo-box" stylesheets="@../Styles/TextStyle.css" />
-                              <Label layoutX="34.0" layoutY="26.0" text="Búsqueda de Libros">
-                                 <font>
-                                    <Font name="Tw Cen MT Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="29.0" layoutY="489.0" prefHeight="211.0" prefWidth="794.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="489.0">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../airbook/images/booksArtboard%201-100.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="638.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../airbook/images/booksArtboard%204-100.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="438.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../airbook/images/booksArtboard%203-100.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="235.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../airbook/images/booksArtboard%202-100.jpg" />
-                     </image>
-                  </ImageView>
-                  <Button layoutY="160.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #F2F2F2;" text="1984">
-                     <font>
-                        <Font name="Tw Cen MT Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="195.0" layoutY="159.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #F2F2F2;" text="Cien años de soledad">
-                     <font>
-                        <Font name="Tw Cen MT Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="404.0" layoutY="159.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #F2F2F2;" text="IT">
-                     <font>
-                        <Font name="Tw Cen MT Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="605.0" layoutY="159.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #F2F2F2;" text="Fahrenheit 451">
-                     <font>
-                        <Font name="Tw Cen MT Bold" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="anchorBusquedaLibros" prefHeight="700.0" prefWidth="850.0" style="-fx-background-color: #D8754E;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="13.0" layoutY="13.0" prefHeight="638.0" prefWidth="837.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -253,6 +141,129 @@
                   <Font name="Tw Cen MT Condensed Bold" size="16.0" />
                </font>
             </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorHome" layoutX="-2.0" prefHeight="700.0" prefWidth="850.0" style="-fx-background-color: #F2F2F2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="2.0" prefHeight="108.0" prefWidth="850.0" style="-fx-background-color: #F2F2F2;">
+               <children>
+                  <Button fx:id="btnCerrarSesion" layoutX="716.0" layoutY="35.0" mnemonicParsing="false" onAction="#onClicCerrarSesion" prefHeight="45.0" prefWidth="109.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../Styles/TextStyle.css" text="Cerrar Sesión" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Tw Cen MT" size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnLogin" layoutX="710.0" layoutY="10.0" mnemonicParsing="false" onAction="#loginButtonPushed" prefHeight="91.0" prefWidth="126.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../Styles/TextStyle.css" text="Iniciar Sesión" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Tw Cen MT" size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnRegistro" layoutX="596.0" layoutY="10.0" mnemonicParsing="false" onAction="#registroButtonPushed" prefHeight="91.0" prefWidth="114.0" style="-fx-background-color: #F2F2F2;" text="Registrarse" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Tw Cen MT" size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Button>
+                  <ImageView fitHeight="99.0" fitWidth="102.0" layoutX="13.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../airbook/images/LogosLogo-100.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="264.0" fitWidth="853.0" layoutX="-2.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../airbook/images/BannerArtboard%201-100.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="72.0" layoutY="275.0" prefHeight="181.0" prefWidth="710.0" style="-fx-background-color: #D8754E;">
+               <children>
+                  <AnchorPane layoutX="32.0" layoutY="20.0" prefHeight="110.0" prefWidth="650.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <AnchorPane prefHeight="142.0" prefWidth="650.0" style="-fx-background-color: #F2F2F2;">
+                           <children>
+                              <TextField fx:id="textSearchHome" layoutX="34.0" layoutY="70.0" prefHeight="45.0" prefWidth="346.0" promptText="Búsqueda Rápida" styleClass="text-field" stylesheets="@../Styles/TextStyle.css">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextField>
+                              <Button fx:id="button_search" layoutX="524.0" layoutY="78.0" mnemonicParsing="false" onAction="#onClicSearchLibroHome" prefHeight="38.0" prefWidth="109.0" style="-fx-background-color: #F1DE9C;" text="Buscar">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed Bold" size="16.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="menu_filter" depthTest="DISABLE" layoutX="388.0" layoutY="69.0" prefHeight="45.0" prefWidth="114.0" promptText="Filtros" styleClass="combo-box" stylesheets="@../Styles/TextStyle.css" />
+                              <Label layoutX="34.0" layoutY="26.0" text="Búsqueda de Libros">
+                                 <font>
+                                    <Font name="Tw Cen MT Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="29.0" layoutY="489.0" prefHeight="211.0" prefWidth="794.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="489.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../airbook/images/booksArtboard%201-100.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="638.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../airbook/images/booksArtboard%204-100.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="438.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../airbook/images/booksArtboard%203-100.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="235.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../airbook/images/booksArtboard%202-100.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button layoutY="160.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #F2F2F2;" text="1984">
+                     <font>
+                        <Font name="Tw Cen MT Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="195.0" layoutY="159.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #F2F2F2;" text="Cien años de soledad">
+                     <font>
+                        <Font name="Tw Cen MT Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="404.0" layoutY="159.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #F2F2F2;" text="IT">
+                     <font>
+                        <Font name="Tw Cen MT Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="605.0" layoutY="159.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="189.0" style="-fx-background-color: #F2F2F2;" text="Fahrenheit 451">
+                     <font>
+                        <Font name="Tw Cen MT Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

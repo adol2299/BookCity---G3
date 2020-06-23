@@ -32,7 +32,12 @@ public class ControlBd {
         sen = new SQL_Sentencias(user, pass);
 
     }
-
+    public static void main(String[] args) {
+        ControlBd bd= new ControlBd("root", "");
+        Libro libro=new Libro();
+        libro.setIsbn("8.4975944E9");
+        bd.getExistenciaLibro(libro);
+    }
     //¿Existe?
     public boolean ExisteUsuario(Usuario usuario) {
         return sen.existencias(usuario.getCedula(), " from Usuario where cedula=" + usuario.getCedula() + "';");
@@ -48,6 +53,13 @@ public class ControlBd {
         Object[][] resultado = sen.GetTabla(columnas, "libro", 
                 "select * FROM libro Where "+filter.toLowerCase()+" like '%"+busqueda+"%';");
         return resultado;
+    }
+    
+    public int getExistenciaLibro(Libro libro){
+        String[] columnas={"existencia"};
+        Object[][] resultado = sen.GetTabla(columnas, "libro", 
+                "select * FROM libro Where isbn ='"+libro.getIsbn() +"';");
+        return  Integer.parseInt((String) resultado[0][0]);
     }
     
   

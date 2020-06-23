@@ -28,13 +28,17 @@ public class LoginController {
     private TextField TextPassw;
     @FXML
     private TextField TextCedula;
-
+    private MainMenuController mainMenuController;
     public void LoginButtonPushed(ActionEvent event) throws IOException {
         Usuario usu = new Usuario(TextCedula.getText(), TextPassw.getText());
         Alert alert = new Alert(Alert.AlertType.INFORMATION, login(usu), ButtonType.OK);
         alert.showAndWait();
         if (alert.getResult() == ButtonType.OK) {
             alert.close();
+            mainMenuController.getBtnLogin().setVisible(false);
+            mainMenuController.getBtnRegistro().setVisible(false);
+            mainMenuController.getBtnCerrarSesion().setVisible(true);
+            mainMenuController.getBtnCerrarSesion().toFront();
         }
         TextPassw.getScene().getWindow().hide();
         //Se abre el scene correspondiente al admin en caso de que el usuario que inicie sesión sea admin
@@ -61,4 +65,14 @@ public class LoginController {
             return "Datos incorrectos";
         }
     }
+
+    public MainMenuController getMainMenuController() {
+        return mainMenuController;
+    }
+
+    public void setMainMenuController(MainMenuController mainMenuController) {
+        this.mainMenuController = mainMenuController;
+    }
+    
+    
 }
