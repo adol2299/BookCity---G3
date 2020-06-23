@@ -9,6 +9,7 @@ import Entidad.Libro;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -88,7 +89,20 @@ public class DetalleLibroController implements Initializable {
             l.setPrecio(precioDetalleLibro.getText());
             l.setExistencia(cboxNumeroCopias.getValue());
             l.setEstado("Disponible");
-            AirBook.cart.add(l);
+            boolean repetido = false;
+            for(int i = 0; i < AirBook.cart.size(); i++)
+            {   String Lib1 = AirBook.cart.get(i).getIsbn();
+                String Lib2 = l.getIsbn();
+                if(Lib1.equals(Lib2))
+                {   int x = Integer.parseInt(AirBook.cart.get(i).getExistencia());
+                    x += Integer.parseInt(l.getExistencia());
+                    AirBook.cart.get(i).setExistencia(""+x);
+                    repetido = true;
+                    break;
+                }
+            }
+            if(!repetido)
+                AirBook.cart.add(l);
             return "Libro agregado";
         } catch (Exception ex) {
             return "Error al agregar el libro";
