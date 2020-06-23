@@ -8,6 +8,8 @@ import Entidad.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class SQL_Sentencias {
@@ -60,6 +62,22 @@ public class SQL_Sentencias {
             System.out.println(e);
         }
         return estado;
+    }
+
+    public boolean insertarFactura_has_libro(String datos[], String insert) {
+        try {
+            boolean estado = false;
+            ps.setInt(1, Integer.parseInt(datos[0]));
+            ps.setString(2, datos[1]);
+            ps.setInt(3, Integer.parseInt(datos[2]));
+            ps.execute();
+            ps.close();
+            estado = true;
+            return estado;
+        } catch (SQLException ex) {
+            Logger.getLogger(SQL_Sentencias.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
     
     //Método para registrar un nuevo usuario en la BD a partir de un objeto de la clase Usuario

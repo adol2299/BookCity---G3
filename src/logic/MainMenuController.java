@@ -76,28 +76,10 @@ public class MainMenuController implements Initializable {
     @FXML
     private ComboBox<String> menuFilterBusquedaLibros;
     @FXML
-    private AnchorPane anchorBook;
-    @FXML
     private AnchorPane anchorEnvio;
 
     @FXML
-    private TextField tituloDetalleLibro;
-    @FXML
-    private TextField autorDetalleLibro;
-    @FXML
-    private TextField editorialDetalleLibro;
-    @FXML
-    private TextField anoDetalleLibro;
-    @FXML
-    private TextField isbnDetalleLibro;
-    @FXML
-    private TextField precioDetalleLibro;
-    @FXML
     private Button btnVerMasDetallesLibro;
-    @FXML
-    private ComboBox<String> cboxNumeroCopias;
-    @FXML
-    private Button btnAgregarAlCarrito;
     @FXML
     private Button login;
     @FXML
@@ -330,7 +312,6 @@ public class MainMenuController implements Initializable {
  
     
 
-    @FXML
     public void onClicVolverDetalles(ActionEvent event) {
         anchorBusquedaLibros.toFront();
         btnVerMasDetallesLibro.setDisable(true);
@@ -372,5 +353,18 @@ public class MainMenuController implements Initializable {
         if(this.carritoController!=null){
             carritoController.llenarTablaCart();
         }
+    }
+
+    @FXML
+    public void onClicFinalizarCompra(ActionEvent event) {
+        Alert alert=new Alert(Alert.AlertType.INFORMATION, finalizarCompra(),ButtonType.OK);
+        if(alert.getResult()==ButtonType.OK){
+            System.out.println("Mostrar Resumen compra");
+        }
+    }
+    
+    public String finalizarCompra(){
+
+        return "";
     }
 }

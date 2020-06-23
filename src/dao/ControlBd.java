@@ -6,6 +6,7 @@
 package dao;
 
 import Entidad.Factura;
+import Entidad.Factura_has_libro;
 import Entidad.Libro;
 import Entidad.Usuario;
 import static javafx.application.Application.launch;
@@ -68,7 +69,13 @@ public class ControlBd {
         return sen.insertarFactura(datos, "insert into Factura(direccion, fecha,"
                 + "valor, Domicilio_id, Libreria_nit, Usuario_cedula) values(?,?,?,?,?,?);");
     }
-
+    //Metodo para insertar nueva Factura_has_libro
+    public boolean setFactura_has_Libro(Factura_has_libro factura) {
+        String[] datos = {String.valueOf(factura.getFactura_id()),
+            factura.getLibro_isbn(),String.valueOf(factura.getCantidad())};
+        return sen.insertarFactura(datos, "insert into Factura(direccion, fecha,"
+                + "valor, Domicilio_id, Libreria_nit, Usuario_cedula) values(?,?,?,?,?,?);");
+    }
 
     public boolean setUsuario(Usuario usuario) {
         String[] datos = {usuario.getCedula(),usuario.getContrasena(),

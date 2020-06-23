@@ -129,73 +129,6 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorEnvio" prefHeight="700.0" prefWidth="853.0" style="-fx-background-color: #F2F2F2;">
-         <children>
-            <AnchorPane prefHeight="102.0" prefWidth="853.0" style="-fx-background-color: #D8754E;">
-               <children>
-                  <ImageView fitHeight="126.0" fitWidth="97.0" layoutX="378.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../airbook/images/LogosLogo%20Negative-100.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <Label layoutX="43.0" layoutY="129.0" text="Datos de envío">
-               <font>
-                  <Font name="Tw Cen MT Condensed" size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="43.0" layoutY="188.0" prefHeight="26.0" prefWidth="62.0" text="Dirección ">
-               <font>
-                  <Font name="Tw Cen MT Condensed" size="19.0" />
-               </font>
-            </Label>
-            <TextField layoutX="43.0" layoutY="224.0" prefHeight="25.0" prefWidth="434.0" promptText="Dirección válida para Bogotá" stylesheets="@../Styles/TextStyle.css" />
-            <Label layoutX="43.0" layoutY="297.0" prefHeight="26.0" prefWidth="259.0" text="Datos adicionales (Torre, apto, conjunto, etc.)">
-               <font>
-                  <Font name="Tw Cen MT Condensed" size="19.0" />
-               </font>
-            </Label>
-            <TextField layoutX="43.0" layoutY="338.0" prefHeight="25.0" prefWidth="434.0" promptText="Dirección válida para Bogotá" stylesheets="@../Styles/TextStyle.css" />
-            <Label layoutX="43.0" layoutY="405.0" prefHeight="26.0" prefWidth="259.0" text="Opciones de Entrega">
-               <font>
-                  <Font name="Tw Cen MT Condensed" size="19.0" />
-               </font>
-            </Label>
-            <CheckBox layoutX="43.0" layoutY="451.0" mnemonicParsing="false" text="Entrega Normal (6 a 8 días)">
-               <font>
-                  <Font name="Tw Cen MT Condensed" size="16.0" />
-               </font>
-            </CheckBox>
-            <CheckBox layoutX="43.0" layoutY="485.0" mnemonicParsing="false" text="Entrega Premium (1 a 2 días)">
-               <font>
-                  <Font name="Tw Cen MT Condensed" size="16.0" />
-               </font>
-            </CheckBox>
-            <CheckBox layoutX="43.0" layoutY="519.0" mnemonicParsing="false" text="Entrega en el mismo día">
-               <font>
-                  <Font name="Tw Cen MT Condensed" size="16.0" />
-               </font>
-            </CheckBox>
-            <Line endX="672.0" layoutX="144.0" layoutY="389.0" startX="-100.0" style="-fx-stroke: #F1DE9C; -fx-stroke-width: 3;" />
-            <Label layoutX="43.0" layoutY="595.0" prefHeight="26.0" prefWidth="87.0" text="Total a Pagar:">
-               <font>
-                  <Font name="Tw Cen MT Condensed" size="19.0" />
-               </font>
-            </Label>
-            <TextField layoutX="43.0" layoutY="629.0" prefHeight="25.0" prefWidth="174.0" promptText="Valor total de la compra" stylesheets="@../Styles/TextStyle.css" />
-            <Button layoutX="688.0" layoutY="637.0" mnemonicParsing="false" onMouseClicked="#onClicDetalles" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Finalizar Compra">
-               <font>
-                  <Font name="Tw Cen MT Condensed Bold" size="16.0" />
-               </font>
-            </Button>
-            <Button layoutX="546.0" layoutY="637.0" mnemonicParsing="false" onAction="#volverABusquedaLibros" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Volver">
-               <font>
-                  <Font name="Tw Cen MT Condensed Bold" size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="anchorBusquedaLibros" prefHeight="700.0" prefWidth="850.0" style="-fx-background-color: #D8754E;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="13.0" layoutY="13.0" prefHeight="638.0" prefWidth="837.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -253,6 +186,73 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorEnvio" prefHeight="700.0" prefWidth="853.0" style="-fx-background-color: #F2F2F2;">
+         <children>
+            <AnchorPane prefHeight="102.0" prefWidth="853.0" style="-fx-background-color: #D8754E;">
+               <children>
+                  <ImageView fitHeight="126.0" fitWidth="97.0" layoutX="378.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../airbook/images/LogosLogo%20Negative-100.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="43.0" layoutY="129.0" text="Datos de envío">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="43.0" layoutY="188.0" prefHeight="26.0" prefWidth="62.0" text="Dirección ">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="19.0" />
+               </font>
+            </Label>
+            <TextField layoutX="43.0" layoutY="224.0" prefHeight="25.0" prefWidth="434.0" promptText="Dirección válida para Bogotá" stylesheets="@../Styles/TextStyle.css" />
+            <Label layoutX="43.0" layoutY="297.0" prefHeight="26.0" prefWidth="259.0" text="Datos adicionales (Torre, apto, conjunto, etc.)">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="19.0" />
+               </font>
+            </Label>
+            <TextField layoutX="43.0" layoutY="338.0" prefHeight="25.0" prefWidth="434.0" promptText="Dirección válida para Bogotá" stylesheets="@../Styles/TextStyle.css" />
+            <Label layoutX="43.0" layoutY="405.0" prefHeight="26.0" prefWidth="259.0" text="Opciones de Entrega">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="19.0" />
+               </font>
+            </Label>
+            <CheckBox layoutX="43.0" layoutY="451.0" mnemonicParsing="false" text="Entrega Normal (6 a 8 días)">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="43.0" layoutY="485.0" mnemonicParsing="false" text="Entrega Premium (1 a 2 días)">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="43.0" layoutY="519.0" mnemonicParsing="false" text="Entrega en el mismo día">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="16.0" />
+               </font>
+            </CheckBox>
+            <Line endX="672.0" layoutX="144.0" layoutY="389.0" startX="-100.0" style="-fx-stroke: #F1DE9C; -fx-stroke-width: 3;" />
+            <Label layoutX="43.0" layoutY="595.0" prefHeight="26.0" prefWidth="87.0" text="Total a Pagar:">
+               <font>
+                  <Font name="Tw Cen MT Condensed" size="19.0" />
+               </font>
+            </Label>
+            <TextField layoutX="43.0" layoutY="629.0" prefHeight="25.0" prefWidth="174.0" promptText="Valor total de la compra" stylesheets="@../Styles/TextStyle.css" />
+            <Button layoutX="688.0" layoutY="637.0" mnemonicParsing="false" onAction="#onClicFinalizarCompra" onMouseClicked="#onClicDetalles" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Finalizar Compra">
+               <font>
+                  <Font name="Tw Cen MT Condensed Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="546.0" layoutY="637.0" mnemonicParsing="false" onAction="#volverABusquedaLibros" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Volver">
+               <font>
+                  <Font name="Tw Cen MT Condensed Bold" size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
