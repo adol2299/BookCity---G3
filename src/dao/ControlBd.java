@@ -5,6 +5,7 @@
  */
 package dao;
 
+import Entidad.Domicilio;
 import Entidad.Factura;
 import Entidad.Factura_has_libro;
 import Entidad.Libro;
@@ -41,6 +42,7 @@ public class ControlBd {
     public boolean ExisteUsuario(Usuario usuario) {
         return sen.existencias(usuario.getCedula(), " from Usuario where cedula=" + usuario.getCedula() + "';");
     }
+    
 
     //Consultas
     
@@ -62,19 +64,29 @@ public class ControlBd {
         return resultado;
     }
     //Metodo para insertar nueva Factura
-    public boolean setFactura(Factura factura) {
-        String[] datos = {factura.getDireccion(),
+    public int setFactura(Factura factura) {
+        String[] datos = {
         factura.getFecha(),factura.getValor(), String.valueOf(factura.getDomicilio_id()),
         factura.getLibreria_nit(),factura.getUsuario_cedula()};
-        return sen.insertarFactura(datos, "insert into Factura(direccion, fecha,"
-                + "valor, Domicilio_id, Libreria_nit, Usuario_cedula) values(?,?,?,?,?,?);");
+        return sen.insertarFactura(datos, "insert into Factura(fecha,"
+                + "valor, Domicilio_id, Libreria_nit, Usuario_cedula) values(?,?,?,?,?);");
     }
     //Metodo para insertar nueva Factura_has_libro
     public boolean setFactura_has_Libro(Factura_has_libro factura) {
         String[] datos = {String.valueOf(factura.getFactura_id()),
             factura.getLibro_isbn(),String.valueOf(factura.getCantidad())};
-        return sen.insertarFactura(datos, "insert into Factura(direccion, fecha,"
-                + "valor, Domicilio_id, Libreria_nit, Usuario_cedula) values(?,?,?,?,?,?);");
+        return sen.insertarFactura_has_libro(datos, "insert into Factura_has_libro("
+                + "Factura_id, Libro_isbn, Cantidad) values (?,?,?);");
+    }
+    
+    //Metodo para insertar domicilios
+    public int setDomicilio(Domicilio domicilio) {
+        String[] datos = {domicilio.getDireccion(),
+            domicilio.getFecha(),String.valueOf(domicilio.getValor()),
+            domicilio.getDatos_adicionales(),domicilio.getTipo_entrega()};
+        return sen.insertarDomicilio(datos, "insert into Domicilio("
+                + "direccion, fecha, valor, datos_adicionales, tipo_entrega) "
+                + "values (?,?,?,?,?);");
     }
 
     public boolean setUsuario(Usuario usuario) {

@@ -44,29 +44,33 @@ public class SQL_Sentencias {
         return estado;
     }
     
-    public boolean insertarFactura(String datos[], String insert) {
-        boolean estado = false;
+    public int insertarFactura(String datos[], String insert) {
+        int lastInt = -1;
         try {
-            ps = con.conectado().prepareStatement(insert);
+            ps = con.conectado().prepareStatement(insert,PreparedStatement.RETURN_GENERATED_KEYS);
             for (int i = 0; i <= datos.length - 1; i++) {
-                if(i!=3){
+                if(i!=2){
                     ps.setString(i + 1, datos[i]);
                 }else{
                     ps.setInt(i+1, Integer.parseInt(datos[i]));
                 }
             }
             ps.execute();
+            res=ps.getGeneratedKeys();
+            while(res.next()){
+                lastInt=res.getInt(1);
+            }
             ps.close();
-            estado = true;
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return estado;
+        return lastInt;
     }
 
     public boolean insertarFactura_has_libro(String datos[], String insert) {
         try {
             boolean estado = false;
+            ps = con.conectado().prepareStatement(insert);
             ps.setInt(1, Integer.parseInt(datos[0]));
             ps.setString(2, datos[1]);
             ps.setInt(3, Integer.parseInt(datos[2]));
@@ -78,6 +82,30 @@ public class SQL_Sentencias {
             Logger.getLogger(SQL_Sentencias.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+  
+    public int insertarDomicilio(String datos[], String insert) {
+        int lastId = -1;
+
+        try {
+            ps = con.conectado().prepareStatement(insert,PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, datos[0]);
+            ps.setString(2, datos[1]);
+            ps.setFloat(3, Float.parseFloat(datos[2]));
+            ps.setString(4, datos[3]);
+            ps.setString(5, datos[4]);
+            ps.execute();
+            res = ps.getGeneratedKeys(); // Get ResultSet containing new primary key.
+            if (res.next()) {
+                lastId = res.getInt(1); // Get primary key of record created from ResultSet and set field in Address object.
+            }
+            ps.close();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SQL_Sentencias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lastId;
     }
     
     //Método para registrar un nuevo usuario en la BD a partir de un objeto de la clase Usuario
@@ -126,6 +154,25 @@ public class SQL_Sentencias {
             System.out.println(e);
         }
         return a;
+    }
+    
+
+    public int lastID(String tabla) {
+        int id = -1;
+        try {
+            ps = con.conectado().prepareStatement(
+                    "select * from "+tabla+" where id=(SELECT LAST_INSERT_ID());"
+            );
+            res = ps.executeQuery();
+            res.next();
+            ResultSet rs=ps.getGeneratedKeys();
+            if(rs.next()){
+               id=rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return id;
     }
 
     

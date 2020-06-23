@@ -36,6 +36,13 @@ public class Factura_has_libro {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public Factura_has_libro(int Factura_id, String Libro_isbn, int cantidad) {
+        this.Factura_id = Factura_id;
+        this.Libro_isbn = Libro_isbn;
+        this.cantidad = cantidad;
+    }
+    
     
     
 }

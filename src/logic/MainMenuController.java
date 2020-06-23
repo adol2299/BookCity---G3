@@ -5,11 +5,19 @@
  */
 package logic;
 
+import Entidad.Domicilio;
+import Entidad.Factura;
+import Entidad.Factura_has_libro;
 import dao.ControlBd;
 import Entidad.Libro;
+import dao.SQL_Sentencias;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +36,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -43,12 +52,12 @@ import javafx.stage.Window;
 
 public class MainMenuController implements Initializable {
 
-    private CarritoController cart;
 
     @FXML
     private TextField textSearchHome;
 
     private ControlBd control = new ControlBd("root", "");
+    private SQL_Sentencias sen=new SQL_Sentencias("root","");
     @FXML
     private ComboBox<String> menu_filter;
 
@@ -89,6 +98,17 @@ public class MainMenuController implements Initializable {
     @FXML
     private Button carrito;
     private CarritoController carritoController;
+    @FXML
+    private TextField txtDireccionEnvio;
+    @FXML
+    private TextField txtDatosAdicionales;
+    @FXML
+    private CheckBox cboxNormal;
+    @FXML
+    private CheckBox cBoxPremium;
+    @FXML
+    private CheckBox cBoxDia;
+    private int lastIdDomicilio,lastIdFactura;
 
     //Creación Popup Login//
     public void popupLogin(final Stage stage) throws IOException {
@@ -358,13 +378,59 @@ public class MainMenuController implements Initializable {
     @FXML
     public void onClicFinalizarCompra(ActionEvent event) {
         Alert alert=new Alert(Alert.AlertType.INFORMATION, finalizarCompra(),ButtonType.OK);
+        alert.showAndWait();
         if(alert.getResult()==ButtonType.OK){
             System.out.println("Mostrar Resumen compra");
         }
     }
     
     public String finalizarCompra(){
-
-        return "";
+        try{
+            insertarDomicilio();
+        insertarFactura();
+        insertarFactura_has_libro();
+            return "Compra Exitosa";
+        }catch(Exception e){
+            System.err.print(e);
+            return "Fallo al generar la compra";
+        }
     }
+
+    public void insertarFactura_has_libro() {
+        for (Libro libro : AirBook.cart) {
+            Factura_has_libro f= new Factura_has_libro(lastIdFactura,libro.getIsbn(),Integer.parseInt(libro.getExistencia()));
+            control.setFactura_has_Libro(f);
+        }
+    }
+
+    public void insertarFactura() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calobj = Calendar.getInstance();
+        Factura factura = new Factura(df.format(calobj.getTime()), 
+                carritoController.getSubtotal().getText(),
+                lastIdDomicilio, "8516548", AirBook.usu.getCedula());
+        lastIdFactura=control.setFactura(factura);
+    }
+
+    public void insertarDomicilio() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calobj = Calendar.getInstance();
+        float valor;
+        String tipoEntrega;
+        if(cboxNormal.isSelected()){
+            valor=5000;
+            tipoEntrega="normal";
+        }else if(cBoxPremium.isSelected()){
+            valor=10000;
+            tipoEntrega="premium";
+        }else{
+            valor=15000;
+            tipoEntrega="mismo dia";
+        }
+        Domicilio domicilio= new Domicilio(txtDireccionEnvio.getText(), df.format(calobj.getTime()),
+                valor, txtDatosAdicionales.getText(), tipoEntrega);
+        lastIdDomicilio=control.setDomicilio(domicilio);
+    }
+
+   
 }

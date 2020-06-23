@@ -123,5 +123,14 @@ public class CarritoController {
         AirBook.cart.remove(libroSeleccionado);
         llenarTablaCart();
     }
+
+    public TextField getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(TextField subtotal) {
+        this.subtotal = subtotal;
+    }
+    
     
 }

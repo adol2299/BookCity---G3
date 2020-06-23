@@ -11,15 +11,13 @@ package Entidad;
  */
 public class Factura {
     private String id;
-    private String direccion;
     private String fecha;
     private String valor;
     private String libreria_nit;
     private int domicilio_id;
     private String usuario_cedula;
 
-    public Factura(String direccion, String fecha, String valor, int domicilio_id,String libreria_nit, String usuario_cedula) {
-        this.direccion = direccion;
+    public Factura( String fecha, String valor, int domicilio_id,String libreria_nit, String usuario_cedula) {
         this.fecha = fecha;
         this.valor = valor;
         this.libreria_nit = libreria_nit;
@@ -35,14 +33,6 @@ public class Factura {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 
     public String getFecha() {
