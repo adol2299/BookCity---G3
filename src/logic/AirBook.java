@@ -34,12 +34,20 @@ public class AirBook extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         ControlBd control = new ControlBd("root", "");
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));         
-        Scene scene = new Scene (root);   
-        scene.getStylesheets().add("/Styles/TextStyle.css");
-        stage.setScene(scene);
-        
-        stage.show();
+        if (control.testConexion()) {
+            FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));
+            Parent root = loader.load();
+            MainMenuController controller=loader.getController();
+            controller.setControl(control);
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/Styles/TextStyle.css");
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            Alert alert= new Alert(Alert.AlertType.ERROR,"Error en la conexión"
+                    + "con la base de datos", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     public static void main(String[] args) {

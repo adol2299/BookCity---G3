@@ -56,8 +56,7 @@ public class MainMenuController implements Initializable {
     @FXML
     private TextField textSearchHome;
 
-    private ControlBd control = new ControlBd("root", "");
-    private SQL_Sentencias sen=new SQL_Sentencias("root","");
+    private ControlBd control;
     @FXML
     private ComboBox<String> menu_filter;
 
@@ -109,6 +108,10 @@ public class MainMenuController implements Initializable {
     @FXML
     private CheckBox cBoxDia;
     private int lastIdDomicilio,lastIdFactura;
+    @FXML
+    private TextField txtValorTotal;
+    private float valorDomicilio;
+    private String tipoEntrega;
 
     //Creación Popup Login//
     public void popupLogin(final Stage stage) throws IOException {
@@ -370,17 +373,23 @@ public class MainMenuController implements Initializable {
     }
 
     public void ActualizarTablaCarrito() {
-        if(this.carritoController!=null){
+        if (this.carritoController != null) {
             carritoController.llenarTablaCart();
         }
     }
 
     @FXML
     public void onClicFinalizarCompra(ActionEvent event) {
-        Alert alert=new Alert(Alert.AlertType.INFORMATION, finalizarCompra(),ButtonType.OK);
-        alert.showAndWait();
-        if(alert.getResult()==ButtonType.OK){
-            System.out.println("Mostrar Resumen compra");
+        if (txtDireccionEnvio.getText().length() > 0 && txtDatosAdicionales.getText().length() > 0
+                && (cboxNormal.isSelected() || cBoxPremium.isSelected() || cboxNormal.isSelected())) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, finalizarCompra(), ButtonType.OK);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) {
+                System.out.println("Mostrar Resumen compra");
+            }
+        }else{
+            Alert alert=new Alert(Alert.AlertType.ERROR, "Favor llene todos los datos", ButtonType.OK);
+            alert.showAndWait();
         }
     }
     
@@ -415,22 +424,58 @@ public class MainMenuController implements Initializable {
     public void insertarDomicilio() {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calobj = Calendar.getInstance();
-        float valor;
-        String tipoEntrega;
-        if(cboxNormal.isSelected()){
-            valor=5000;
-            tipoEntrega="normal";
-        }else if(cBoxPremium.isSelected()){
-            valor=10000;
-            tipoEntrega="premium";
-        }else{
-            valor=15000;
-            tipoEntrega="mismo dia";
-        }
+       
+        
         Domicilio domicilio= new Domicilio(txtDireccionEnvio.getText(), df.format(calobj.getTime()),
-                valor, txtDatosAdicionales.getText(), tipoEntrega);
+                valorDomicilio, txtDatosAdicionales.getText(), tipoEntrega);
         lastIdDomicilio=control.setDomicilio(domicilio);
     }
+    
+     @FXML
+    private void handleOpxionesEntrega(ActionEvent event) {
+        if(event.getSource().equals(cboxNormal)){
+            valorDomicilio=5000;
+            tipoEntrega="normal";
+            cBoxPremium.setSelected(false);
+            cBoxDia.setSelected(false);
+            actualizarValorTotal();
+        }else if(event.getSource().equals(cBoxPremium)){
+            valorDomicilio=10000;
+            tipoEntrega="premium";
+            cboxNormal.setSelected(false);
+            cBoxDia.setSelected(false);
+            actualizarValorTotal();
+        }else{
+            valorDomicilio=15000;
+            tipoEntrega="mismo dia";
+            cboxNormal.setSelected(false);
+            cBoxPremium.setSelected(false);
+            actualizarValorTotal();
+        }
+    }
 
+    public void actualizarValorTotal() {
+        setTxtValorTotal(String.valueOf(Integer.parseInt(carritoController.getSubtotal().getText())+valorDomicilio));
+    }
+
+    public TextField getTxtValorTotal() {
+        return txtValorTotal;
+    }
+
+    public void setTxtValorTotal(String txtValorTotal) {
+        this.txtValorTotal.setText(txtValorTotal);
+    }
+
+    public ControlBd getControl() {
+        return control;
+    }
+
+    public void setControl(ControlBd control) {
+        this.control = control;
+    }
+
+    
+   
+    
    
 }

@@ -24,12 +24,7 @@ public class ControlBd {
     private String pass = "";
     private SQL_Conexion con;
 
-    public static void main(String[] args) {
-//        ControlBd control = new ControlBd("root", "");
-//        System.out.println("heyy");
-//        Factura factura= new Factura("sasa",  "sasa", "sasa","sasa","sasa","sasa");
-//        control.setFactura(factura);
-    }   
+
     public ControlBd(String user, String pass) {
         this.user = user;
         this.pass = pass;
@@ -113,8 +108,16 @@ public class ControlBd {
                 + "precio='"+libro.getPrecio()+"', "
                 + "ano_publicacion='"+libro.getAno_publicacion()+"', "
                 + "estado='"+libro.getEstado()+"', "
-                + "existencia='"+libro.getExistencia()+
-                "' where isbn='"+libro.getIsbn()+"';";
+                + "existencia='" + libro.getExistencia()
+                + "' where isbn='" + libro.getIsbn() + "';";
         return sen.update(sql);
+    }
+
+    public boolean testConexion() {
+        if (con.conectado() != null) {
+            return true;
+        }else{
+            return false;
+        }
     }
 }

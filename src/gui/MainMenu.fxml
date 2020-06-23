@@ -221,17 +221,17 @@
                   <Font name="Tw Cen MT Condensed" size="19.0" />
                </font>
             </Label>
-            <CheckBox fx:id="cboxNormal" layoutX="43.0" layoutY="451.0" mnemonicParsing="false" text="Entrega Normal (6 a 8 días)">
+            <CheckBox fx:id="cboxNormal" layoutX="43.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleOpxionesEntrega" text="Entrega Normal (6 a 8 días)">
                <font>
                   <Font name="Tw Cen MT Condensed" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="cBoxPremium" layoutX="43.0" layoutY="485.0" mnemonicParsing="false" text="Entrega Premium (1 a 2 días)">
+            <CheckBox fx:id="cBoxPremium" layoutX="43.0" layoutY="485.0" mnemonicParsing="false" onAction="#handleOpxionesEntrega" text="Entrega Premium (1 a 2 días)">
                <font>
                   <Font name="Tw Cen MT Condensed" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="cBoxDia" layoutX="43.0" layoutY="519.0" mnemonicParsing="false" text="Entrega en el mismo día">
+            <CheckBox fx:id="cBoxDia" layoutX="43.0" layoutY="519.0" mnemonicParsing="false" onAction="#handleOpxionesEntrega" text="Entrega en el mismo día">
                <font>
                   <Font name="Tw Cen MT Condensed" size="16.0" />
                </font>
@@ -242,7 +242,7 @@
                   <Font name="Tw Cen MT Condensed" size="19.0" />
                </font>
             </Label>
-            <TextField layoutX="43.0" layoutY="629.0" prefHeight="25.0" prefWidth="174.0" promptText="Valor total de la compra" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="txtValorTotal" layoutX="43.0" layoutY="629.0" prefHeight="25.0" prefWidth="182.0" promptText="Valor total de la compra" stylesheets="@../Styles/TextStyle.css" />
             <Button layoutX="688.0" layoutY="637.0" mnemonicParsing="false" onAction="#onClicFinalizarCompra" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #F1DE9C;" text="Finalizar Compra">
                <font>
                   <Font name="Tw Cen MT Condensed Bold" size="16.0" />

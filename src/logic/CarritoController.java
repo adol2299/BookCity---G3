@@ -100,6 +100,7 @@ public class CarritoController {
         }
         else
         {
+            mainMenuController.setTxtValorTotal(subtotal.getText());
             anchorMain.getScene().getWindow().hide();  
             mainMenuController.onClicIrEnvio();
         }
