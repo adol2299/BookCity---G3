@@ -8,6 +8,7 @@ package dao;
 import Entidad.Domicilio;
 import Entidad.Factura;
 import Entidad.Factura_has_libro;
+import Entidad.Libreria;
 import Entidad.Libro;
 import Entidad.Usuario;
 import static javafx.application.Application.launch;
@@ -52,6 +53,13 @@ public class ControlBd {
         "ano_publicacion","estado","existencia"};
         Object[][] resultado = sen.GetTabla(columnas, "libro", 
                 "select * FROM libro Where "+filter.toLowerCase()+" like '%"+busqueda+"%';");
+        return resultado;
+    }
+    
+    public Object[][] getLibreria(String libreriaNit){
+        String[] columnas={"nit","nombre","direccion","telefono","representante_legal"};
+        Object[][] resultado = sen.GetTabla(columnas, "libreria", 
+                "select * FROM libreria Where nit = "+libreriaNit+";");
         return resultado;
     }
     

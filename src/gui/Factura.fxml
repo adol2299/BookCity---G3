@@ -13,9 +13,9 @@
    <children>
       <AnchorPane fx:id="anchorMain" layoutY="102.0" prefHeight="547.0" prefWidth="600.0" style="-fx-background-color: #F2F2F2;">
          <children>
-            <TextField fx:id="direccionLib" layoutX="15.0" layoutY="11.0" promptText="Dirección" stylesheets="@../Styles/TextStyle.css" />
-            <TextField fx:id="ciudadLib" layoutX="15.0" layoutY="45.0" promptText="Ciudad" stylesheets="@../Styles/TextStyle.css" />
-            <TextField fx:id="telefonoLib" layoutX="15.0" layoutY="81.0" promptText="Teléfono" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="direccionLib" editable="false" layoutX="15.0" layoutY="11.0" promptText="Dirección" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="ciudadLib" editable="false" layoutX="15.0" layoutY="45.0" promptText="Ciudad" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="telefonoLib" editable="false" layoutX="15.0" layoutY="81.0" promptText="Teléfono" stylesheets="@../Styles/TextStyle.css" />
             <Label layoutX="15.0" layoutY="126.0" text="Facturar a:">
                <font>
                   <Font name="Tw Cen MT Condensed" size="19.0" />
@@ -29,28 +29,28 @@
                   <TableColumn fx:id="subtotal" prefWidth="125.0" styleClass="column-header-background" text="Precio Total" />
               </columns>
             </TableView>
-            <TextField fx:id="nombreCliente" layoutX="15.0" layoutY="155.0" promptText="Nombre Cliente" stylesheets="@../Styles/TextStyle.css" />
-            <TextField fx:id="direccionCliente" layoutX="15.0" layoutY="193.0" promptText="Dirección Cliente" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="nombreCliente" editable="false" layoutX="15.0" layoutY="155.0" promptText="Nombre Cliente" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="direccionCliente" editable="false" layoutX="15.0" layoutY="193.0" promptText="Dirección Cliente" stylesheets="@../Styles/TextStyle.css" />
             <Label layoutX="340.0" layoutY="25.0" prefHeight="22.0" prefWidth="236.0" style="-fx-background-color: #F1DE9C;" text="    Factura #                               Fecha">
                <font>
                   <Font name="Tw Cen MT Condensed" size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="facturaid" layoutX="340.0" layoutY="58.0" prefHeight="25.0" prefWidth="88.0" promptText="Num Factura" stylesheets="@../Styles/TextStyle.css" />
-            <TextField fx:id="fechaFactura" layoutX="488.0" layoutY="58.0" prefHeight="25.0" prefWidth="88.0" promptText="Fecha" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="facturaid" editable="false" layoutX="340.0" layoutY="58.0" prefHeight="25.0" prefWidth="88.0" promptText="Num Factura" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="fechaFactura" editable="false" layoutX="488.0" layoutY="58.0" prefHeight="25.0" prefWidth="88.0" promptText="Fecha" stylesheets="@../Styles/TextStyle.css" />
             <Label layoutX="340.0" layoutY="126.0" prefHeight="22.0" prefWidth="236.0" style="-fx-background-color: #F1DE9C;" text="  ID Cliente                      Tipo de Entrega">
                <font>
                   <Font name="Tw Cen MT Condensed" size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="cedula" layoutX="340.0" layoutY="155.0" prefHeight="25.0" prefWidth="88.0" promptText="Id Cliente" stylesheets="@../Styles/TextStyle.css" />
-            <TextField fx:id="entrega" layoutX="473.0" layoutY="155.0" prefHeight="25.0" prefWidth="103.0" promptText="Tipo de Entrega" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="cedula" editable="false" layoutX="340.0" layoutY="155.0" prefHeight="25.0" prefWidth="88.0" promptText="Id Cliente" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="entrega" editable="false" layoutX="473.0" layoutY="155.0" prefHeight="25.0" prefWidth="103.0" promptText="Tipo de Entrega" stylesheets="@../Styles/TextStyle.css" />
             <Label layoutX="340.0" layoutY="227.0" prefHeight="22.0" prefWidth="236.0" style="-fx-background-color: #F1DE9C;" text="  Total">
                <font>
                   <Font name="Tw Cen MT Condensed" size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="total" layoutX="340.0" layoutY="255.0" prefHeight="25.0" prefWidth="88.0" promptText="Total" stylesheets="@../Styles/TextStyle.css" />
+            <TextField fx:id="total" editable="false" layoutX="340.0" layoutY="255.0" prefHeight="25.0" prefWidth="88.0" promptText="Total" stylesheets="@../Styles/TextStyle.css" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="102.0" prefWidth="600.0" style="-fx-background-color: #D8754E;">

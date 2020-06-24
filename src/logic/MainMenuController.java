@@ -449,11 +449,12 @@ public class MainMenuController implements Initializable {
     }
 
     public Factura insertarFactura() {
+        String libreriaNit=(String) control.getLibreria("8516548")[0][0];
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calobj = Calendar.getInstance();
         Factura factura = new Factura(df.format(calobj.getTime()),
                 carritoController.getSubtotal().getText(),
-                lastIdDomicilio, "8516548", AirBook.usu.getCedula());
+                lastIdDomicilio, libreriaNit, AirBook.usu.getCedula());
         lastIdFactura = control.setFactura(factura);
         return factura;
     }
