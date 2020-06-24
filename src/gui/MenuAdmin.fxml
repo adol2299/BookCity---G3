@@ -19,7 +19,7 @@
          <children>
             <AnchorPane layoutX="2.0" prefHeight="108.0" prefWidth="850.0" style="-fx-background-color: #F2F2F2;">
                <children>
-                  <Button fx:id="login" layoutX="710.0" layoutY="10.0" mnemonicParsing="false" onAction="#loginButtonPushed" prefHeight="91.0" prefWidth="126.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../Styles/TextStyle.css" text="Iniciar Sesión" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnCerrarSesion" layoutX="716.0" layoutY="35.0" mnemonicParsing="false" onAction="#onClicCerrarSesion" prefHeight="45.0" prefWidth="109.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../Styles/TextStyle.css" text="Cerrar Sesión" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Tw Cen MT" size="17.0" />
                      </font>
@@ -29,15 +29,7 @@
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
-                  </Button>
-                  <Button fx:id="registro" layoutX="596.0" layoutY="10.0" mnemonicParsing="false" onAction="#registroButtonPushed" prefHeight="91.0" prefWidth="114.0" style="-fx-background-color: #F2F2F2;" text="Registrarse" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="Tw Cen MT" size="17.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Button>
+                  </Button>          
                   <ImageView fitHeight="99.0" fitWidth="102.0" layoutX="13.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../airbook/images/LogosLogo-100.jpg" />

@@ -4,6 +4,7 @@
  */
 package dao;
 
+import Entidad.Libreria;
 import Entidad.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -139,6 +140,39 @@ public class SQL_Sentencias {
             System.out.println(e);
         }
         return a;
+    }
+    
+     public Usuario getUsuario(String cedula) {
+        Usuario a = new Usuario("","","");
+        try {
+            ps = con.conectado().prepareStatement("select nombre, contrasena from Usuario "
+                    + "where cedula = '"+cedula+"';");
+            res = ps.executeQuery();
+            res.next();
+            a.setCedula(cedula);
+            a.setNombre(res.getString("nombre"));
+            a.setContrasena(res.getString("contrasena"));
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return a;
+    }
+    
+    public Libreria getLibreria(String NIT)
+    {   Libreria lib = new Libreria(NIT,"","","","");
+        try {
+            ps = con.conectado().prepareStatement("select nombre, direccion, telefono, representante_legal from libreria "
+                    + "where nit = '"+NIT+"';");
+            res = ps.executeQuery();
+            res.next();
+            lib.setNombre(res.getString("nombre"));
+            lib.setDireccion(res.getString("direccion"));
+            lib.setTelefono(res.getString("telefono"));
+            lib.setRepresentante_legal("representante_legal");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lib;
     }
     
     //Método para consultar si un ISBN ya se encuentra registrado

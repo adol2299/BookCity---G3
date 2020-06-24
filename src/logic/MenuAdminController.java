@@ -42,10 +42,6 @@ import javafx.stage.Window;
 public class MenuAdminController implements Initializable {
 
     @FXML
-    private Button login;
-    @FXML
-    private Button registro;
-    @FXML
     private TextField textSearchHome;
     @FXML
     private Button button_search;
@@ -389,5 +385,19 @@ public class MenuAdminController implements Initializable {
         }
         else
             return test;
+    }
+    
+    
+    @FXML
+    public void onClicCerrarSesion(ActionEvent event) throws IOException {
+        AirBook.usu=null;
+        FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/Styles/TextStyle.css");
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        anchorHome.getScene().getWindow().hide();
     }
 }

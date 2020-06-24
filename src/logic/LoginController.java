@@ -29,11 +29,12 @@ public class LoginController {
     @FXML
     private TextField TextCedula;
     private MainMenuController mainMenuController;
+    
     public void LoginButtonPushed(ActionEvent event) throws IOException {
         Usuario usu = new Usuario(TextCedula.getText(), TextPassw.getText());
         Alert alert = new Alert(Alert.AlertType.INFORMATION, login(usu), ButtonType.OK);
         alert.showAndWait();
-        if (alert.getResult() == ButtonType.OK) {
+        if (login(usu).equals("Bienvenido")) {
             alert.close();
             mainMenuController.getBtnLogin().setVisible(false);
             mainMenuController.getBtnRegistro().setVisible(false);
@@ -43,17 +44,15 @@ public class LoginController {
         TextPassw.getScene().getWindow().hide();
         //Se abre el scene correspondiente al admin en caso de que el usuario que inicie sesión sea admin
         if (AirBook.usu.isAdministrador()) {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("gui/MenuAdmin.fxml"));
+            FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("gui/MenuAdmin.fxml"));
+            Parent root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/Styles/TextStyle.css");
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
+            mainMenuController.hide();
         }
-
-        //Queda pendiente hacer que el menú que se habia abierto antes se cierre
-        //Y que el propio popup del Login también se cierre, pero no se como hacerlo
-        //Andrés y David, les recomiendo eso y de paso me enseñan, gracias xd.
     }
 
     public String login(Usuario usu) {

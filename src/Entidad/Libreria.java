@@ -16,6 +16,14 @@ public class Libreria {
     private String telefono;
     private String representante_legal;
 
+    public Libreria() {
+        this.nit = null;
+        this.nombre = null;
+        this.direccion = null;
+        this.telefono = null;
+        this.representante_legal = null;
+    }
+
     public Libreria(String nit, String nombre, String direccion, String telefono,
             String representante_legal) {
         this.nit = nit;

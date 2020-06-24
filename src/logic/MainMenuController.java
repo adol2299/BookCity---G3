@@ -8,8 +8,10 @@ package logic;
 import Entidad.Domicilio;
 import Entidad.Factura;
 import Entidad.Factura_has_libro;
+import Entidad.Libreria;
 import dao.ControlBd;
 import Entidad.Libro;
+import Entidad.Usuario;
 import dao.SQL_Sentencias;
 import java.io.IOException;
 import java.net.URL;
@@ -92,6 +94,7 @@ public class MainMenuController implements Initializable {
     @FXML
     private Button carrito;
     private CarritoController carritoController;
+    private FacturaController facturaController;
     @FXML
     private TextField txtDireccionEnvio;
     @FXML
@@ -113,7 +116,11 @@ public class MainMenuController implements Initializable {
     private Button btnLogin;
     @FXML
     private Button btnRegistro;
-
+    private SQL_Sentencias sql = new SQL_Sentencias();
+    
+    public void hide()
+    {   btnLogin.getScene().getWindow().hide();  }
+    
     //Creación Popup Login//
     public void popupLogin(final Stage stage) throws IOException {
         final Popup popup = new Popup();
@@ -379,13 +386,14 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    public void onClicFinalizarCompra(ActionEvent event) {
+    public void onClicFinalizarCompra(ActionEvent event){
         if (txtDireccionEnvio.getText().length() > 0 && txtDatosAdicionales.getText().length() > 0
                 && (cboxNormal.isSelected() || cBoxPremium.isSelected() || cboxNormal.isSelected())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, finalizarCompra(), ButtonType.OK);
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
                 System.out.println("Mostrar Resumen compra");
+                
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Favor llene todos los datos", ButtonType.OK);
@@ -393,11 +401,39 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    public void showResumen(Domicilio dom, Factura fac) throws IOException
+    {   FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("gui/Factura.fxml"));
+        Parent root = loader.load();
+        FacturaController controller = loader.getController();
+        this.facturaController = controller;
+        String nit = fac.getLibreria_nit();
+        Libreria lib = sql.getLibreria(nit);
+        Usuario cliente = sql.getUsuario(fac.getUsuario_cedula());
+        facturaController.getDireccionLib().setText(lib.getDireccion());
+        facturaController.getCiudadLib().setText("Bogotá");
+        facturaController.getTelefonoLib().setText(lib.getTelefono());
+        facturaController.getNombreCliente().setText(cliente.getNombre());
+        facturaController.getDireccionCliente().setText(dom.getDireccion());
+        facturaController.getFacturaid().setText(""+lastIdFactura);
+        facturaController.getFechaFactura().setText(fac.getFecha());
+        facturaController.getCedula().setText(cliente.getCedula());
+        facturaController.getEntrega().setText(dom.getTipo_entrega());
+        facturaController.getTotal().setText(fac.getValor());
+        controller.llenarTablaCart();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/Styles/TextStyle.css");
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        
+    }
+    
     public String finalizarCompra() {
         try {
-            insertarDomicilio();
-            insertarFactura();
+            Domicilio d = insertarDomicilio();
+            Factura f = insertarFactura();
             insertarFactura_has_libro();
+            showResumen(d,f);
             return "Compra Exitosa";
         } catch (Exception e) {
             System.err.print(e);
@@ -412,22 +448,25 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void insertarFactura() {
+    public Factura insertarFactura() {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calobj = Calendar.getInstance();
         Factura factura = new Factura(df.format(calobj.getTime()),
                 carritoController.getSubtotal().getText(),
                 lastIdDomicilio, "8516548", AirBook.usu.getCedula());
         lastIdFactura = control.setFactura(factura);
+        return factura;
     }
 
-    public void insertarDomicilio() {
+    public Domicilio insertarDomicilio() {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calobj = Calendar.getInstance();
 
         Domicilio domicilio = new Domicilio(txtDireccionEnvio.getText(), df.format(calobj.getTime()),
                 valorDomicilio, txtDatosAdicionales.getText(), tipoEntrega);
         lastIdDomicilio = control.setDomicilio(domicilio);
+        
+        return domicilio;
     }
 
     @FXML
