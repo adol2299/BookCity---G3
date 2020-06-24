@@ -393,6 +393,8 @@ public class MenuAdminController implements Initializable {
         AirBook.usu=null;
         FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("gui/MainMenu.fxml"));
         Parent root = loader.load();
+        MainMenuController mainMenuController=loader.getController();
+        mainMenuController.setControl(control);
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/Styles/TextStyle.css");
         Stage stage = new Stage();
