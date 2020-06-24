@@ -97,10 +97,10 @@ public class ControlBd {
     }
 
     public boolean setUsuario(Usuario usuario) {
-        String[] datos = {usuario.getCedula(),usuario.getContrasena(),
-        usuario.getNombre(),"0"};
-        return sen.insertar(datos, "insert into Usuario(cedula, contrasena,"
-                + " nombre, administrador) values(?,?,?,?);");
+        String[] datos = {usuario.getCedula(),usuario.getNombre(),
+        usuario.getCedula(),"0"};
+        return sen.insertar(datos, "insert into Usuario(cedula, nombre,"
+                + " contrasena, administrador) values(?,?,?,?);");
     }
 
      public boolean setLibro(Libro libro) {
